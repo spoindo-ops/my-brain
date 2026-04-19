@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDEN Signature - 공식 주소 생성기</title>
+    <style>
+        body { font-family: 'Pretendard', sans-serif; background-color: #f4f7f1; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; width: 100%; max-width: 400px; }
+        .logo { color: #8DA17E; font-size: 24px; font-weight: 800; margin-bottom: 10px; }
+        .desc { color: #666; font-size: 14px; margin-bottom: 30px; }
+        #result { background: #f9fbf7; border: 2px solid #eef2ea; padding: 20px; border-radius: 12px; font-size: 18px; font-weight: 600; color: #333; margin-bottom: 20px; word-break: keep-all; min-height: 54px; display: flex; align-items: center; justify-content: center; }
+        .btn-group { display: flex; flex-direction: column; gap: 10px; }
+        button { padding: 15px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .btn-main { background: #8DA17E; color: white; }
+        .btn-main:hover { background: #7a8d6d; }
+        .btn-copy { background: #333; color: white; }
+        .btn-copy:active { transform: scale(0.98); }
+        .back-link { margin-top: 20px; display: inline-block; color: #999; text-decoration: none; font-size: 13px; border-bottom: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="logo">EDEN Signature</div>
+        <div class="desc">결제에 사용할 주소를 생성합니다.</div>
+        
+        <div id="result">아래 버튼을 눌러주세요</div>
+
+        <div class="btn-group">
+            <button class="btn-main" onclick="generate()">새 주소 생성</button>
+            <button class="btn-copy" onclick="copyAddr()">주소 복사하기</button>
+        </div>
+
+        <a href="index_kr.html" class="back-link">결제 창으로 돌아가기</a>
+    </div>
+
+    <script>
+        const data = [
+            "서울특별시 강남구 테헤란로 427",
+            "경기도 성남시 분당구 판교역로 166",
+            "서울특별시 서초구 강남대로 299",
+            "부산광역시 해운대구 센텀서로 30",
+            "대구광역시 중구 달구벌대로 2077"
+        ];
+
+        function generate() {
+            const randomAddr = data[Math.floor(Math.random() * data.length)] + " " + (Math.floor(Math.random() * 90) + 10) + "호";
+            document.getElementById('result').innerText = randomAddr;
+        }
+
+        function copyAddr() {
+            const text = document.getElementById('result').innerText;
+            if(text.includes("아래 버튼")) return alert("주소를 먼저 생성해주세요!");
+            
+            navigator.clipboard.writeText(text).then(() => {
+                alert("주소가 복사되었습니다! 결제창에 붙여넣으세요.");
+            });
+        }
+    </script>
+</body>
+</html>

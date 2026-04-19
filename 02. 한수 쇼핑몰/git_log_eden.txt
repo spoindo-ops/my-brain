@@ -1,0 +1,30 @@
+﻿1696d20 Re-apply address and customer center number to eden_mask.html after accidental deletion
+c520e9b Update address and customer center phone number
+c0f5f3d Optimize mobile PC view scaling: increased virtual width to 1500px and added aspect validation
+e29dfb2 Completely revert to 2026-03-01 20:30 state (yesterday's final version) as requested
+eba912e Fix hero height calculating using aspect-ratio so mobile view scales correctly and matches PC proportions
+de380ca Revert mobile scaling to 1400px to match PC view perfectly
+df394f0 Optimize mobile PC view scaling: increased virtual width to 1600px for better side margins and resolved 'stuck' button issue.
+d4133b4 Replace Hydration highlight image with latest user upload
+64bc50d Update Hydration highlight image to borderless full-shot version
+e29b57a Swap 3rd and 4th customer review images as requested
+5016f4a Adjust hero box position slightly to the right for better balance
+13167d5 Move buy box further left and change Natural & Science text to yellow
+86a4341 Precise hero box positioning at midpoint and blue Natural & Science text
+9a06181 Optimize hero layout: move box further left (10-15%) and set white background
+e1ab332 Final hero layout optimization: white background and moved content box left
+b0b0e4e Optimize hero section: White background, shrunk content box, and centered original high-res image
+57927e7 Optimize hero section: Move box left, remove margins, and improve clarity
+79bfa28 Final High-Res Crystal Clear Hero Background (4.5k scale) and CSS
+4604e9f Finalized balanced wide hero background and CSS layout
+f6552c6 Revert third review image to no-gap version as requested
+dfd6e08 Apply wide hero section and restore perfect view review image as requested
+86048b7 Re-apply product shot for third review image (Perfect View state)
+e217011 Revert third review image to original state as requested
+af7b8a3 Update third customer review image with new user upload
+8eacf5d Update second customer review image with new user upload
+3468b8c Revert 3rd review image and deployment settings to stable state f9a6088
+7e0ccfa Update review image 3: Balanced view showing all products while maintaining card ratio
+99f7cb1 Zoom in on products for 3rd review image and force PC cache clear
+f616fdb Final attempt to force PC update for review image 3
+7db04e8 Adjust third review image: zoom out content to show more products and force PC update

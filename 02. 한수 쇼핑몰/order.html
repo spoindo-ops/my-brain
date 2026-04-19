@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | HAN SOO Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root { --royal-blue: #1565C0; --deep-navy: #003366; --text: #1a1a1a; --green: #8DA17E; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Noto Sans KR', sans-serif; background: #f5f5f5; line-height: 1.6; }
+        .page-wrap { max-width: 1060px; margin: 50px auto; padding: 44px 40px; background: #fff; border-radius: 20px; box-shadow: 0 12px 48px rgba(0,0,0,0.07); position: relative; }
+        .status-bar { background: #f8f9fa; padding: 12px 20px; border-radius: 10px; margin-bottom: 25px; display: flex; justify-content: space-between; font-size: 13px; border: 1px solid #eee; }
+        .btn-close { position: absolute; top: 24px; right: 24px; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #000; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
+        .btn-close:hover { background: #000; color: #fff; transform: rotate(90deg); }
+        .checkout-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; }
+        input { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 7px; }
+        .btn-pay { width: 100%; background: var(--royal-blue); color: #fff; padding: 18px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="page-wrap">
+        <div id="orderUserStatus" class="status-bar"></div>
+        <div class="btn-close" onclick="location.href='index.html'"><i class="fas fa-times"></i></div>
+        <div style="text-align:center; margin-bottom:36px;">
+            <h1 style="font-size:42px; color:var(--deep-navy);">Secure Checkout</h1>
+            <p style="color:#888;">Complete your premium skincare ritual.</p>
+        </div>
+        <div class="checkout-grid">
+            <div class="billing-section">
+                <h3>Shipping Details</h3>
+                <input type="text" placeholder="Full Name">
+                <input type="email" placeholder="Email Address">
+                <input type="text" placeholder="Phone Number">
+                <input type="text" placeholder="Address">
+            </div>
+            <div class="order-summary" style="background:#f9f9f9; padding:25px; border-radius:15px;">
+                <h3>Order Summary</h3>
+                <div id="cart-list"></div>
+                <div style="margin-top:20px; border-top:2px solid #333; padding-top:15px; display:flex; justify-content:space-between; font-weight:800; font-size:22px;">
+                    <span>Total</span>
+                    <span id="total-val">0 KRW</span>
+                </div>
+                <button class="btn-pay" onclick="alert('Processing...')">PAY NOW</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const HS_AUTH_KEY = 'hansoo_auth_user';
+        const HS_GUEST_KEY = 'hansoo_guest_user';
+        let cart = JSON.parse(sessionStorage.getItem('hansoo_cart')) || [];
+        function _sync() {
+            const u = JSON.parse(localStorage.getItem(HS_AUTH_KEY));
+            const g = JSON.parse(sessionStorage.getItem(HS_GUEST_KEY));
+            const el = document.getElementById('orderUserStatus');
+            if (u && u.isLoggedIn) el.innerHTML = `<span><strong>${u.name}</strong> Logged in</span> <a href="javascript:void(0)" onclick="handleLogout()" style="color:#e53935;">Log Out</a>`;
+            else if (g && g.isGuest) el.innerHTML = `<span>Guest ID: ${g.guestId}</span> <a href="index.html">Sign In</a>`;
+            else el.innerHTML = `<span>New here? Welcome.</span> <a href="index.html">Sign In</a>`;
+        }
+        window.handleLogout = function() {
+            if(confirm('Log out?')) { localStorage.removeItem(HS_AUTH_KEY); sessionStorage.removeItem(HS_GUEST_KEY); location.href = 'index.html'; }
+        };
+        function render() {
+            const list = document.getElementById('cart-list');
+            let total = 0;
+            list.innerHTML = cart.map(item => {
+                total += item.price * item.quantity;
+                return `<div style="display:flex; gap:10px; margin-bottom:15px;">
+                    <img src="${item.img}" style="width:50px; height:50px; object-fit:contain; border:1px solid #eee;">
+                    <div style="flex:1">
+                        <div style="font-size:12px; font-weight:700;">${item.name}</div>
+                        <div style="font-size:11px; color:#888;">${item.quantity} x ${item.price.toLocaleString()} KRW</div>
+                    </div>
+                </div>`;
+            }).join('');
+            document.getElementById('total-val').innerText = total.toLocaleString() + ' KRW';
+        }
+        document.addEventListener('DOMContentLoaded', () => { _sync(); render(); });
+    </script>
+</body>
+</html>

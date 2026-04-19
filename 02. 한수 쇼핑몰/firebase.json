@@ -1,0 +1,21 @@
+{
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "*.md",
+      "*.py",
+      "*.ps1",
+      "*.lnk",
+      "*.txt",
+      "*.pdf",
+      "*.zip",
+      "새 폴더/",
+      "기타 이미지/",
+      "생리대/",
+      "_archive/**"
+    ]
+  }
+}

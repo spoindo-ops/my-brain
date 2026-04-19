@@ -1,0 +1,20 @@
+﻿                <i class="fas fa-shield-alt" style="font-size: 36px; color: #111;"></i>
+            </div>
+            <h2
+                style="font-family: 'Cormorant Garamond', serif; font-size: 34px; margin-bottom: 25px; font-weight: 700; color: #111;">
+                ?ъ뾽???뺣낫 ?뺤씤</h2>
+            <div style="text-align: center; font-size: 15px; color: #555; margin-bottom: 45px; line-height: 1.8;">
+                怨듭젙嫄곕옒?꾩썝??怨듭떇 ?ъ씠?몄쓽 ?곗씠?곕?<br>?ㅼ떆媛꾩쑝濡?議고쉶?섏뿬 ?뺣낫瑜??뺤씤?섏떎 ???덉뒿?덈떎.
+            </div>
+            <button onclick="window.open('http://www.ftc.go.kr/bizCommPop.do?wrkr_no=2451501057', '_blank')"
+                style="width: 100%; max-width: 360px; padding: 24px; background: #111; color: #fff; border: none; border-radius: 50px; font-weight: 700; cursor: pointer; transition: all 0.3s; font-size: 17px; letter-spacing: 0.5px; margin: 0 auto; display: block; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
+                怨듭젙嫄곕옒?꾩썝???ъ뾽?먯젙蹂?議고쉶
+            </button>
+            <p onclick="document.getElementById('hsVerificationModal').style.display='none'; document.body.style.overflow='auto';"
+                style="margin-top: 30px; font-size: 14px; color: #999; text-decoration: underline; cursor: pointer; font-weight: 500;">
+                ?リ린</p>
+        </div>
+    </div>
+</body>
+
+</html>

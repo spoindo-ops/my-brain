@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDEN Overnight 16:9 Original</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* 원본 이미지 우측의 짙은 녹색과 완벽히 동일한 배경색 */
+            background-color: #122F23;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 16:9 고정 컨테이너 */
+        .stage {
+            width: 100vw;
+            height: 56.25vw;
+            /* 9 / 16 = 0.5625 */
+            max-width: 1920px;
+            max-height: 1080px;
+            background-color: #122F23;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* 
+           대표님이 주신 원본 이미지(생리대 5.png)를 100% 그대로 노출 
+           중앙에 배치하여 좌우 여백이 16:9로 채워지도록 함
+        */
+        .original-container {
+            height: 100%;
+            width: auto;
+            aspect-ratio: 16 / 9;
+            /* 컨테이너 자체를 16:9로 고정 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .original-img {
+            max-height: 100%;
+            width: auto;
+            object-fit: contain;
+            /* 원본 이미지 파일 경로 */
+            content: url('생리대/생리대 5.png');
+        }
+
+        /* 
+           이미지 파일이 브라우저에서 안 보일 경우를 대비하여 
+           배경으로도 깔아둡니다. 
+        */
+        .original-source-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('생리대/생리대 5.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="stage">
+        <!-- 원본을 중앙에 배치하여 좌우가 16:9 비율로 꽉 차게 함 -->
+        <div class="original-container">
+            <img class="original-img" alt="EDEN Overnight Original Image">
+        </div>
+        <!-- 예비용 배경 배경 -->
+        <div class="original-source-bg"></div>
+    </div>
+
+</body>
+
+</html>

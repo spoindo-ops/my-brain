@@ -1,0 +1,2328 @@
+﻿<!DOCTYPE html>
+<html lang="ko" style="scroll-behavior: smooth;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HAN SOO - 성진(SeongJin) | 프리미엄 자연주의 화장품/title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap"
+            rel="stylesheet">
+        <style>
+            :root {
+                --primary-blue: #A2C2E1;
+                --secondary-green: #8DA17E;
+                --white: #FFFFFF;
+                --black: #000000;
+                --gray-100: #F8F9FA;
+                --gray-200: #E9ECEF;
+                --gray-300: #DEE2E6;
+                --gray-500: #ADB5BD;
+                --gray-800: #343A40;
+                --text-dark: #202020;
+                --transition-smooth: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+                --transition-fast: all 0.3s ease;
+                --font-main: 'Noto Sans KR', sans-serif;
+                --font-accent: 'Cormorant Garamond', serif;
+            }
+
+            /* --- Checkout Modal Styles --- */
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.6);
+                backdrop-filter: blur(5px);
+                z-index: 2000;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .modal-overlay.active {
+                display: flex;
+                opacity: 1;
+            }
+
+            .checkout-modal {
+                background: #fff;
+                width: 90%;
+                max-width: 600px;
+                max-height: 90vh;
+                border-radius: 24px;
+                overflow-y: auto;
+                position: relative;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+                padding: 40px;
+                transform: translateY(20px);
+                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .modal-overlay.active .checkout-modal {
+                transform: translateY(0);
+            }
+
+            .modal-close {
+                position: absolute;
+                top: 25px;
+                right: 25px;
+                background: #fff;
+                border: 2px solid #5F6F52;
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #5F6F52;
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: 0 4px 15px rgba(95, 111, 82, 0.2);
+                z-index: 10;
+            }
+
+            .modal-close:hover {
+                transform: rotate(90deg) scale(1.1);
+                background: #5F6F52;
+                color: #fff;
+            }
+
+            .checkout-header {
+                text-align: center;
+                margin-bottom: 35px;
+            }
+
+            .checkout-header h2 {
+                font-family: var(--font-accent);
+                font-size: 32px;
+                font-weight: 400;
+                letter-spacing: 0.05em;
+                margin-bottom: 8px;
+            }
+
+            .checkout-header p {
+                color: #999;
+                font-size: 14px;
+            }
+
+            .checkout-section {
+                margin-bottom: 30px;
+            }
+
+            .checkout-modal .form-group label {
+                display: block;
+                margin-bottom: 5px;
+                font-size: 13px;
+            }
+
+            .section-label {
+                display: block;
+                font-size: 13px;
+                font-weight: 700;
+                color: var(--secondary-green);
+                margin-bottom: 12px;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .form-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+
+            .form-input {
+                width: 100%;
+                padding: 14px 18px;
+                border: 1px solid #eee;
+                border-radius: 12px;
+                font-size: 15px;
+                transition: all 0.2s;
+                background: #fafafa;
+            }
+
+            .form-input:focus {
+                outline: none;
+                border-color: var(--secondary-green);
+                background: #fff;
+                box-shadow: 0 0 0 4px rgba(141, 161, 126, 0.1);
+            }
+
+            /* Order Item Card */
+            #cartItemsList {
+                max-height: 350px;
+                overflow-y: auto;
+                padding-right: 10px;
+                margin-bottom: 25px;
+                scroll-behavior: smooth;
+            }
+
+            #cartItemsList::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            #cartItemsList::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 10px;
+            }
+
+            #cartItemsList::-webkit-scrollbar-thumb {
+                background: #5F6F52;
+                border-radius: 10px;
+            }
+
+            .order-summary-card {
+                background: #f8f9fa;
+                border-radius: 16px;
+                padding: 15px;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                margin-bottom: 12px;
+                border: 1px solid #eee;
+            }
+
+            .summary-img {
+                width: 60px;
+                height: 60px;
+                background: #fff;
+                border-radius: 10px;
+                padding: 5px;
+                object-fit: contain;
+            }
+
+            .summary-info h4 {
+                font-size: 16px;
+                font-weight: 700;
+                margin-bottom: 4px;
+            }
+
+            .summary-info p {
+                font-size: 14px;
+                color: #666;
+            }
+
+            /* Quantity Control */
+            .quantity-control {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin-top: 8px;
+                background: #fff;
+                padding: 4px 10px;
+                border-radius: 50px;
+                border: 1px solid #eee;
+                width: fit-content;
+            }
+
+            .qty-btn {
+                background: none;
+                border: none;
+                width: 24px;
+                height: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                font-size: 16px;
+                color: #666;
+                transition: all 0.2s;
+                border-radius: 50%;
+            }
+
+            .qty-btn:hover {
+                background: #f0f0f0;
+                color: #000;
+            }
+
+            .order-qty {
+                font-size: 14px;
+                font-weight: 700;
+                min-width: 15px;
+                text-align: center;
+            }
+
+            .add-more-btn {
+                margin-top: 15px;
+                background: none;
+                border: 1px dashed var(--secondary-green);
+                color: var(--secondary-green);
+                padding: 8px 15px;
+                border-radius: 8px;
+                font-size: 13px;
+                font-weight: 700;
+                cursor: pointer;
+                transition: all 0.3s;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+
+            .add-more-btn:hover {
+                background: rgba(141, 161, 126, 0.1);
+                border-style: solid;
+            }
+
+            /* Payment Selection */
+            .payment-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .payment-option {
+                position: relative;
+            }
+
+            .payment-option input {
+                position: absolute;
+                opacity: 0;
+            }
+
+            .payment-label {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 15px;
+                border: 1px solid #eee;
+                border-radius: 16px;
+                cursor: pointer;
+                transition: all 0.2s;
+                background: #fff;
+            }
+
+            .payment-label i {
+                font-size: 20px;
+                margin-bottom: 8px;
+                color: #999;
+            }
+
+            .payment-label span {
+                font-size: 14px;
+                font-weight: 600;
+                color: #666;
+            }
+
+            .payment-option input:checked+.payment-label {
+                border-color: var(--secondary-green);
+                background: rgba(141, 161, 126, 0.05);
+            }
+
+            .payment-option input:checked+.payment-label i,
+            .payment-option input:checked+.payment-label span {
+                color: var(--secondary-green);
+            }
+
+            /* Cash Receipt Section */
+            #cash-receipt-container {
+                margin-top: 15px;
+                padding: 20px;
+                background: #f0f4f1;
+                border-radius: 16px;
+                display: none;
+                animation: slideDown 0.3s ease-out;
+            }
+
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .receipt-types {
+                display: flex;
+                gap: 15px;
+                margin-bottom: 12px;
+            }
+
+            .type-label {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 13px;
+                font-weight: 500;
+                cursor: pointer;
+            }
+
+            .type-label input {
+                accent-color: var(--secondary-green);
+            }
+
+            /* Checkout Footer */
+            .checkout-footer {
+                margin-top: 40px;
+                border-top: 1px solid #eee;
+                padding-top: 25px;
+            }
+
+            .total-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 25px;
+            }
+
+            .total-label {
+                font-size: 16px;
+                font-weight: 600;
+                color: #333;
+            }
+
+            .total-amount {
+                font-size: 24px;
+                font-weight: 800;
+                color: #000;
+            }
+
+            .place-order-btn {
+                width: 100%;
+                background: var(--black);
+                color: #fff;
+                border: none;
+                padding: 20px;
+                border-radius: 50px;
+                font-size: 18px;
+                font-weight: 700;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+            .place-order-btn:hover {
+                background: var(--secondary-green);
+                transform: translateY(-2px);
+                box-shadow: 0 10px 20px rgba(141, 161, 126, 0.3);
+            }
+
+            /* --- 실버 메탈릭 효과 (??강력한 버전) --- */
+            .silver-wrapper {
+                position: relative;
+                display: inline-block;
+                overflow: hidden;
+                border-radius: 8px;
+                /* 제품 썸네일과 통일 */
+            }
+
+            /* 1. 베이스 레이어(Multiply): 吏꾪븳 ?ㅻ쾭 ?ㅼ쑝濡?蹂寃?*/
+            .silver-wrapper::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                /* 더 진하고 풍부한 회색 그라디언트*/
+                background: linear-gradient(135deg,
+                        rgba(160, 160, 160, 0.6) 0%,
+                        rgba(200, 200, 200, 0.8) 25%,
+                        rgba(140, 140, 140, 0.6) 50%,
+                        rgba(220, 220, 220, 0.9) 60%,
+                        rgba(160, 160, 160, 0.6) 80%,
+                        rgba(190, 190, 190, 0.7) 100%);
+                mix-blend-mode: multiply;
+                /* 흰색을 확실히 어둡게*/
+                opacity: 0.9;
+                /* 嫄곗쓽 遺덊닾紐낇븯寃???쓬 */
+                z-index: 1;
+                pointer-events: none;
+            }
+
+            /* 2. 광택 레이어(Soft Light/Screen): 반짝임 강화 */
+            .silver-wrapper::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(110deg,
+                        transparent 30%,
+                        rgba(255, 255, 255, 0.7) 45%,
+                        rgba(255, 255, 255, 1.0) 50%,
+                        /* 강한 하이라이트*/
+                        rgba(255, 255, 255, 0.7) 55%,
+                        transparent 70%);
+                mix-blend-mode: soft-light;
+                /* ?먮뒗 screen */
+                opacity: 0.8;
+                z-index: 2;
+                pointer-events: none;
+            }
+
+            /* 3. ?대?吏 議곗젙: ?鍮꾨? 媛뺥븯寃?二쇱뼱 湲덉냽 ?먮굦 洹밸???*/
+            .silver-wrapper img {
+                width: 100%;
+                display: block;
+                border-radius: 8px;
+                /* ?대?吏 ?먯껜 ?쇱슫??*/
+                filter: contrast(1.3) brightness(0.9) grayscale(1);
+                /* grayscale(1): ?꾩쟾 臾댁콈??한수 ?ㅻ쾭) / contrast(1.3): 금속질감 */
+            }
+
+
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Noto Sans KR', sans-serif;
+                color: var(--text-dark);
+                background-color: var(--white);
+                line-height: 1.5;
+                -webkit-font-smoothing: antialiased;
+                min-width: 1400px;
+            }
+
+            a {
+                text-decoration: none;
+                color: inherit;
+                transition: var(--transition-fast);
+            }
+
+            ul {
+                list-style: none;
+            }
+
+            img {
+                max-width: 100%;
+                display: block;
+            }
+
+            /* Scroll Reveal Animation */
+            .reveal {
+                opacity: 0;
+                transform: translateY(40px);
+                transition: var(--transition-smooth);
+            }
+
+            .reveal.active {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* Top Banner */
+            .top-banner {
+                background-color: var(--black);
+                color: var(--white);
+                text-align: center;
+                padding: 10px 0;
+                font-size: 13px;
+                font-weight: 400;
+                letter-spacing: -0.02em;
+            }
+
+            .top-banner a {
+                text-decoration: underline;
+                margin-left: 10px;
+            }
+
+            /* Header */
+            header {
+                position: sticky;
+                top: 0;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                z-index: 1000;
+                border-bottom: 1px solid var(--gray-200);
+                transition: var(--transition-fast);
+            }
+
+            .header-inner {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 0 40px;
+                height: 90px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .logo {
+                font-family: 'Cormorant Garamond', serif;
+                font-size: 32px;
+                font-weight: 300;
+                letter-spacing: 0.2em;
+            }
+
+            .gnb {
+                display: flex;
+                gap: 40px;
+            }
+
+            .gnb a {
+                font-size: 15px;
+                font-weight: 500;
+                letter-spacing: 0.05em;
+            }
+
+            .header-util {
+                display: flex;
+                gap: 24px;
+                align-items: center;
+            }
+
+            .header-util a {
+                font-size: 14px;
+            }
+
+            /* =================================== 
+           EDEN Hero Section (Premium Box Layout)
+           =================================== */
+            .hero {
+                position: relative;
+                width: 100%;
+                aspect-ratio: 16 / 9;
+                background-color: #ffffff;
+                display: flex;
+                align-items: flex-start;
+                justify-content: flex-start;
+                text-align: left;
+                padding: 10px 5% 0;
+                /* 留덉뒪?ъ? ?꾩쟾??遺꾨━?섍린 ?꾪빐 理쒖쟻??*/
+                overflow: hidden;
+                margin-bottom: 60px;
+            }
+
+            .hero::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url('image_updated/hero_bg.png');
+                /* ??理쒓렐???낅뜲?댄듃??怨좎꽦??諛곌꼍 ?대?吏濡?蹂寃?*/
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                z-index: 1;
+            }
+
+            .hero-content {
+                position: relative;
+                z-index: 2;
+                max-width: 320px;
+                /* 議곌툑 ???ш쾶 ?ㅼ? */
+                background: rgba(0, 0, 0, 0.85);
+                backdrop-filter: blur(8px);
+                padding: 30px;
+                /* ?щ갚 ???띿꽦?섍쾶 */
+                border-radius: 12px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                margin-top: 5%;
+                margin-left: calc((100% - 1400px) / 2 + 50px);
+                text-align: left;
+            }
+
+            .hero-subtitle {
+                font-size: 11px;
+                /* ???묎쾶 */
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                color: #00E5FF;
+                margin-bottom: 8px;
+                text-transform: uppercase;
+            }
+
+            .hero-title {
+                font-family: 'Cormorant Garamond', serif;
+                font-size: 26px;
+                /* ?대?吏??而댄뙥?명븳 ?먮굦 */
+                font-weight: 400;
+                color: #ffffff;
+                margin-bottom: 8px;
+                line-height: 1.2;
+            }
+
+            .hero-tagline {
+                font-size: 17px;
+                font-weight: 800;
+                background: linear-gradient(to right, #00E5FF, #00FF87);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 12px;
+            }
+
+            .hero-description {
+                font-size: 11px;
+                /* ?꾩＜ ?묎쾶 */
+                color: #ffffff;
+                margin-bottom: 15px;
+                letter-spacing: -0.01em;
+                line-height: 1.4;
+                opacity: 0.9;
+            }
+
+            .hero-cta {
+                background: #ffffff;
+                color: #111;
+                padding: 15px 45px;
+                /* 議곌툑 ???ㅼ? */
+                border-radius: 50px;
+                font-size: 14px;
+                /* 議곌툑 ???ㅼ? */
+                font-weight: 700;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                display: inline-block;
+                border: none;
+            }
+
+            .hero-cta:hover {
+                background: #f0f0f0;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Products list */
+            section.main-section {
+                padding: 120px 40px;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+
+            .section-title {
+                text-align: center;
+                margin-bottom: 80px;
+            }
+
+            .section-title h2 {
+                font-family: 'Cormorant Garamond', serif;
+                font-size: 44px;
+                font-weight: 300;
+                letter-spacing: 0.1em;
+                margin-bottom: 10px;
+            }
+
+            .section-title p {
+                color: var(--gray-500);
+                font-size: 16px;
+            }
+
+            .product-list {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 60px 20px;
+            }
+
+            .product-item {
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+
+            .product-item a {
+                display: block;
+                text-decoration: none;
+                flex-grow: 1;
+                /*  
+            }
+
+            .product-info {
+                margin-top: 20px;
+                padding-bottom: 20px;
+            }
+
+            .product-thumb {
+                aspect-ratio: 1/1.2;
+                background-color: #EBF5FF;
+                /* 프리미엄 ?고븯?섏깋 諛곌꼍 */
+                margin-bottom: 20px;
+                overflow: hidden;
+                position: relative;
+                padding: 30px;
+                /* ?쒗뭹怨?諛곌꼍 ?ъ씠???띿꽦???щ갚 */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition-smooth);
+            }
+
+            .product-thumb img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            /* ?쒗뭹 蹂몄껜留?媛뺤“?섏뿬 蹂댁뿬二쇰뒗 ?ㅽ???(?명룷洹몃옒???щ∼) */
+            .pouch-crop {
+                width: 210% !important;
+                /* ?띿뒪?몃? ?뺤떎??媛由ш린 ?꾪빐 諛곗쑉 理쒖쟻??*/
+                max-width: none !important;
+                object-position: 5% center !important;
+                /* ?쒗뭹 ?꾩튂 ?뺣? 議곗젙 */
+                filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.08));
+                /* ?낆껜媛?媛뺥솕 */
+            }
+
+            .product-item:hover .product-thumb img {
+                transform: scale(1.1);
+            }
+
+            .product-badge {
+                position: absolute;
+                top: 15px;
+                left: 15px;
+                background: var(--black);
+                color: white;
+                padding: 4px 10px;
+                font-size: 11px;
+                font-weight: 700;
+                z-index: 2;
+            }
+
+            .product-info .brand {
+                font-size: 11px;
+                font-weight: 700;
+                color: var(--secondary-green);
+                margin-bottom: 8px;
+            }
+
+            .product-info .name {
+                font-size: 13px;
+                /* 議곌툑 ??肄ㅽ뙥?명븯寃?議곗젙 */
+                font-weight: 800;
+                color: #000000;
+                /* 釉붾옓?쇰줈 蹂寃?*/
+                margin-bottom: 10px;
+                height: 40px;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                line-clamp: 2;
+                -webkit-box-orient: vertical;
+                text-transform: uppercase;
+                letter-spacing: -0.01em;
+            }
+
+            .product-info .price {
+                font-size: 16px;
+                font-weight: 700;
+                margin-bottom: 5px;
+            }
+
+            .shop-btn {
+                display: block;
+                width: 100%;
+                background: var(--secondary-green);
+                /* 異붿쿇??釉뚮옖???뱀깋 怨꾩뿴濡?蹂寃?*/
+                color: #fff;
+                text-align: center;
+                padding: 12px 0;
+                font-size: 13px;
+                font-weight: 700;
+                border-radius: 4px;
+                margin-top: 15px;
+                transition: all 0.3s ease;
+            }
+
+            .product-item:hover .shop-btn {
+                background: #7a8e6b;
+                /* ?몃쾭 ???쎄컙 ??吏숈? ?뱀깋 */
+                transform: translateY(-2px);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Product Detail Story */
+            .product-story {
+                background-color: #fff;
+                padding: 120px 0;
+                border-top: 1px solid var(--gray-200);
+            }
+
+            /* Conflicting redundant hero styles removed to prevent visual bugs */
+
+
+            /* Conflicting redundant hero styles removed */
+            .story-slider-container {
+                position: relative;
+                max-width: 1000px;
+                margin: 0 auto;
+                overflow: hidden;
+                border-radius: 20px;
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            }
+
+            .story-slider {
+                display: flex;
+                transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+                width: 100%;
+            }
+
+            .story-slide {
+                min-width: 100%;
+                flex-shrink: 0;
+            }
+
+            .story-slide img {
+                width: 100%;
+                max-width: 1000px;
+                aspect-ratio: 16 / 9;
+                display: block;
+                object-fit: cover;
+            }
+
+            .slider-arrow {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(255, 255, 255, 0.7);
+                color: #333;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+                z-index: 10;
+                transition: all 0.3s ease;
+                backdrop-filter: blur(5px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                border: none;
+                cursor: pointer;
+            }
+
+            .slider-arrow:hover {
+                background: #63886f;
+                color: #fff;
+                transform: translateY(-50%) scale(1.1);
+            }
+
+            .slider-arrow.prev {
+                left: 20px;
+            }
+
+            .slider-arrow.next {
+                right: 20px;
+            }
+
+            .slider-dots {
+                position: absolute;
+                bottom: 25px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                gap: 12px;
+                z-index: 10;
+            }
+
+            .dot {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.4);
+                cursor: pointer;
+                transition: all 0.3s ease;
+                border: 1px solid rgba(0, 0, 0, 0.1);
+            }
+
+            .dot.active {
+                background: #63886f;
+                transform: scale(1.2);
+                box-shadow: 0 0 10px rgba(99, 136, 111, 0.5);
+            }
+
+            .story-group {
+                margin-bottom: 50px;
+            }
+
+            .story-flex {
+                display: flex;
+                align-items: center;
+                gap: 40px;
+                background-color: #fcfcfc;
+                padding: 40px;
+                border-radius: 20px;
+            }
+
+            .story-visual {
+                flex: 1;
+                height: 500px;
+                background-color: #EBF5FF;
+                border-radius: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                padding: 40px;
+            }
+
+            .story-visual img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+
+            .story-content {
+                flex: 1.2;
+            }
+
+            .story-content h5 {
+                font-size: 32px;
+                font-weight: 700;
+                margin-bottom: 15px;
+                color: #333;
+            }
+
+            .story-content .tags {
+                margin-bottom: 30px;
+                color: var(--secondary-green);
+                font-weight: 500;
+                font-size: 15px;
+            }
+
+            .detail-info {
+                border-top: none;
+                padding-top: 15px;
+                display: flex !important;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .info-item {
+                margin-bottom: 0;
+                background: #ffffff;
+                border: 1px solid #e0e0e0;
+                border-bottom: none;
+                border-radius: 0;
+                padding: 20px 24px;
+                transition: background 0.3s ease;
+                position: relative;
+            }
+
+            .info-item:first-child {
+                border-radius: 16px 16px 0 0;
+            }
+
+            .info-item:last-child {
+                border-bottom: 1px solid #e0e0e0;
+                border-radius: 0 0 16px 16px;
+            }
+
+            .info-item:hover {
+                background: #fafafa;
+            }
+
+            .info-item .label {
+                font-weight: 700;
+                font-size: 15px;
+                color: var(--secondary-green);
+                margin-bottom: 8px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .info-item:nth-child(1) .label::before {
+                content: '?㎦';
+                font-size: 20px;
+            }
+
+            .info-item:nth-child(2) .label::before {
+                content: '??;
+ font-size: 20px;
+            }
+
+            .info-item:nth-child(3) .label::before {
+                content: '??;
+ font-size: 20px;
+            }
+
+            .info-item .desc {
+                font-size: 15px;
+                color: #555;
+                line-height: 1.6;
+                margin: 0;
+            }
+
+            /* 媛?移대뱶蹂??곕쑜???됱긽 */
+            .info-item:nth-child(1) {
+                border-left: 4px solid #4caf50;
+            }
+
+            .info-item:nth-child(1) .label {
+                color: #2e7d32;
+            }
+
+            .info-item:nth-child(2) {
+                border-left: 4px solid #2196f3;
+            }
+
+            .info-item:nth-child(2) .label {
+                color: #1565c0;
+            }
+
+            .info-item:nth-child(3) {
+                border-left: 4px solid #ffc107;
+            }
+
+            .info-item:nth-child(3) .label {
+                color: #f57c00;
+            }
+
+            .story-title {
+                text-align: center;
+                margin-bottom: 60px;
+            }
+
+            .story-title h4 {
+                font-family: 'Cormorant Garamond', serif;
+                font-size: 24px;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                color: var(--secondary-green);
+            }
+
+            /* Banner Box */
+            .banner-box {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+                margin-top: 100px;
+            }
+
+            .banner-item {
+                height: 450px;
+                background-size: cover;
+                background-position: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 60px;
+                color: var(--white);
+                position: relative;
+            }
+
+            .banner-item::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.2);
+            }
+
+            .banner-item * {
+                z-index: 1;
+            }
+
+            .banner-item h3 {
+                font-size: 32px;
+                font-weight: 300;
+                margin-bottom: 20px;
+                font-family: 'Cormorant Garamond', serif;
+            }
+
+            .banner-item a {
+                display: inline-block;
+                padding-bottom: 5px;
+                border-bottom: 1px solid white;
+                font-size: 13px;
+                width: fit-content;
+            }
+
+            /* Footer */
+            footer {
+                background-color: #fcfcfc;
+                padding: 80px 40px;
+                font-size: 13px;
+                color: #666;
+                border-top: 1px solid var(--gray-200);
+            }
+
+            .footer-inner {
+                max-width: 1400px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: 2fr 1fr 1fr 1.5fr;
+                gap: 40px;
+            }
+
+            .footer-logo {
+                font-size: 24px;
+                color: var(--black);
+                font-family: 'Cormorant Garamond', serif;
+                margin-bottom: 25px;
+            }
+
+
+
+            /* Info Grid for Details */
+            .info-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+                margin-top: 50px;
+            }
+
+            .info-card {
+                background: #fff;
+                border: 1px solid #f0f0f0;
+                border-radius: 20px;
+                overflow: hidden;
+                transition: var(--transition-smooth);
+            }
+
+            .info-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            }
+
+            .info-card-img {
+                height: 320px;
+                /* ?대?吏媛 ????蹂댁씪 ???덈룄濡??믪씠 ?뺣? */
+                background-color: #f8f9fa;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+            }
+
+            .info-card-img img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                /* ?대?吏 ?꾩껜(?쒓? ?ㅻ챸 ?ы븿)媛 蹂댁씠?꾨줉 ?ㅼ젙 */
+                padding: 10px;
+            }
+
+            .info-card-text {
+                padding: 30px;
+            }
+
+            .info-card-text h6 {
+                font-size: 18px;
+                font-weight: 700;
+                margin-bottom: 15px;
+                color: #333;
+            }
+
+            .info-card-text p {
+                font-size: 14px;
+                color: #777;
+                line-height: 1.6;
+                word-break: keep-all;
+            }
+
+            /* 트러블 패치 媛뺤“ ?ㅽ???*/
+            .patch-crop {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: contain !important;
+                object-position: center !important;
+            }
+
+
+
+            /* 에덴 ?щ씪?대뜑 湲濡쒕쾶 ?명룷洹몃옒???덉씠?꾩썐 (4??洹몃━?? */
+            .slide-content {
+                display: flex;
+                width: 100%;
+                height: 100%;
+                background: #fff;
+            }
+
+            .slide-visual {
+                flex: 1.2;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+            }
+
+            .slide-visual img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .slide-info-grid {
+                flex: 1.2;
+                /* 媛濡쒕줈 ?볤쾶 ?곕룄濡?議곗젙 */
+                padding: 20px;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                /* ?놁쑝濡?4媛??섎???*/
+                gap: 12px;
+                background: #f1f4f8;
+            }
+
+            .info-box {
+                background: #fff;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+                border-top: 3px solid #003366;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .info-box h4 {
+                font-size: 13px;
+                color: #003366;
+                margin-bottom: 8px;
+                font-weight: 800;
+                text-transform: uppercase;
+            }
+
+            .info-box p {
+                font-size: 11px;
+                color: #444;
+                line-height: 1.5;
+                word-break: keep-all;
+            }
+
+            /* Show info grid in all modes including Korean */
+            .slide-info-grid {
+                display: grid !important;
+            }
+        </style>
+
+</head>
+
+<body>
+
+    <div class="top-banner" id="events">
+        吏湲??뚯썝媛???섏떆硫?<strong>10留뚯썝 쿠폰팩/strong> 利됱떆 利앹젙! <a href="#">혜택 보기</a>
+    </div>
+
+    <header id="mainHeader">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <img src="logo_hansoo_premium.png" alt="HAN SOO - 성진(SeongJin)"
+                    style="height: 80px; width: auto; vertical-align: middle; display: block;">
+            </a>
+            <nav class="gnb">
+                <li><a href="#brand-story">브랜드 스토리/a></li>
+                <li><a href="#events">멤버십 혜택</a></li>
+                <li><a href="#all-products">紐⑤뱺 ?곹뭹</a></li>
+                <li><a href="#real-reviews">리얼 리뷰</a></li>
+                <li><a href="#events">이벤트/a></li>
+            </nav>
+            <div class="header-util">
+
+                <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <path d="M20 6 9
+    <main>
+        <!-- EDEN Original Hero Section -->
+        <section class=" hero">
+                            <div class="hero-content">
+                                <p class="hero-subtitle">한수 프리미엄</p>
+                                <h2 class="hero-title">시그니처 컬렉션</h2>
+                                <h3 class="hero-tagline">EDEN 백토 & 비바더마</h3>
+                                <p class="hero-description">자연의 생명력과 혁신 과학의 조화<br>한수의 모든 프리미엄 제품 라인업</p>
+                                <a href="javascript:void(0)" class="hero-cta" data-name="01 에덴 백토 마스크" data-price="2500"
+                                    data-img="image_updated/eden_promo.png">지금 구매하기</a>
+                            </div>
+                            </section>
+
+                            <section class="main-section" id="all-products">
+                                <div class="section-title reveal">
+                                    <h2
+                                        style="font-size: 36px; color: #000000; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px;">
+                                        BEST SELLER</h2>
+                                    <p style="color: #666; font-weight: 500; font-size: 16px;">가장 많은 사랑을 받은 한수(HAN SOO)의
+                                        베스트 제품들을 만나보세요.</p>
+                                </div>
+
+                                <div class="product-list">
+                                    <!-- 상품 1: 에덴 백토 마스크 -->
+                                    <div class="product-item reveal">
+                                        <a href="#eden-story">
+                                            <div class="product-thumb">
+                                                <span class="product-badge">BEST</span>
+                                                <img src="image_updated/eden_promo.png" alt="에덴 백토 마스크">
+                                            </div>
+                                            <div class="product-info">
+                                                <p class="brand">EDEN</p>
+                                                <p class="name">01 에덴 - 화이트 클레이 백토 마스크</p>
+                                                <p class="price">
+                                                    <span style="color: #FF5A5F; margin-right: 5px;">58%</span> 2,500원
+                                                    <span
+                                                        style="font-size: 13px; color: #999; text-decoration: line-through; font-weight: 400; margin-left: 5px;">6,000원</span>
+                                                </p>
+                                            </div>
+                                        </a>
+                                        <button class="shop-btn" data-name="01 에덴 백토 마스크" data-price="2500"
+                                            data-img="image_updated/eden_promo.png"
+                                            style="margin-top: auto; width: 100%; background: #8DA17E; color: #fff; text-align: center; padding: 12px 0; font-size: 13px; font-weight: 700; border-radius: 4px; border: none; cursor: pointer;">지금
+                                            구매하기</button>
+                                    </div>
+                                    an class="product-badge">
+                                    踰좎뒪?? </span>
+                                    <img src="image_updated/eden_promo.png" alt="에덴 백토 留덉뒪??>
+                        </div>
+                        <div class=" product-info">
+                                    <p class="brand">EDEN</p>
+                                    <p class="name">01 에덴 ?붿씠???대젅??백토 留덉뒪??(?섎? ?꾪븳 <strong>??/strong>)</p>
+                                    <p class="price">
+                                        <span style="color: #FF5A5F; margin-right: 5px;">58%</span> 2,500?? <span
+                                            style="font-size: 13px; color: #999; text-decoration: line-through; font-weight: 400; margin-left: 5px;">6,000??/span>
+                                    </p>
+                                </div>
+                </a>
+                <div class="shop-btn" data-name="EDEN ?붿씠???대젅??백토 留덉뒪?? data-price=" 2500"
+                    data-img="image_updated/eden_promo.png">吏湲?援щℓ?섍린</div>
+            </div>
+
+            <!-- ?곹뭹 2: 시카 留덉뒪??-->
+            <div class="product-item reveal">
+                <a href="#cica-story" style="display: block;">
+                    <div class="product-thumb">
+                        <span class="product-badge">
+                            踰좎뒪?? </span>
+                        <img src="image_updated/cica_mask_v2.png" alt="시카 留덉뒪??>
+                        </div>
+                        <div class=" product-info">
+                        <p class="brand">VIVA DERMA</p>
+                        <p class="name">02 비바더마 ?곗씪由?耳??留덉뒪??시카</p>
+                        <p class="price">
+                            <span style="color: #FF5A5F; margin-right: 5px;">33%</span> 1,000?? <span
+                                style="font-size: 13px; color: #999; text-decoration: line-through; font-weight: 400; margin-left: 5px;">1,500??/span>
+                        </p>
+                    </div>
+                </a>
+                <div class="shop-btn" data-name="비바더마 ?곗씪由?耳??留덉뒪??시카" data-price="1000"
+                    data-img="image_updated/cica_mask_v2.png">吏湲?援щℓ?섍린</div>
+            </div>
+
+            <!-- ?곹뭹 3: 엑토인留덉뒪??-->
+            <div class="product-item reveal">
+                <a href="#ectoin-story" style="display: block;">
+                    <div class="product-thumb">
+                        <span class="product-badge">踰좎뒪??/span>
+                            <img src="image_updated/ectoin_mask_v2.png" alt="엑토인留덉뒪??>
+                        </div>
+                        <div class=" product-info">
+                            <p class="brand">VIVA DERMA</p>
+                            <p class="name">02 비바더마 ?곗씪由?耳??留덉뒪??엑토인/p>
+                            <p class="price">
+                                <span style="color: #FF5A5F; margin-right: 5px;">33%</span> 1,000?? <span
+                                    style="font-size: 13px; color: #999; text-decoration: line-through; font-weight: 400; margin-left: 5px;">1,500??/span>
+                            </p>
+                    </div>
+                </a>
+                <div class="shop-btn" data-name="비바더마 ?곗씪由?耳??留덉뒪??엑토인 data-price=" 1000"
+                    data-img="image_updated/ectoin_mask_v2.png">吏湲?援щℓ?섍린</div>
+            </div>
+
+            <!-- ?곹뭹 4: 나이아신아마이드 留덉뒪??-->
+            <div class="product-item reveal">
+                <a href="#niacinamide-story" style="display: block;">
+                    <div class="product-thumb">
+                        <span class="product-badge">?좎긽??/span>
+                            <img src="image_updated/niacinamide_mask_v2.png" alt="나이아신아마이드 留덉뒪??>
+                        </div>
+                        <div class=" product-info">
+                            <p class="brand">VIVA DERMA</p>
+                            <p class="name">02 비바더마 ?곗씪由?耳??留덉뒪??나이아신아마이드</p>
+                            <p class="price">
+                                <span style="color: #FF5A5F; margin-right: 5px;">33%</span> 1,000?? <span
+                                    style="font-size: 13px; color: #999; text-decoration: line-through; font-weight: 400; margin-left: 5px;">1,500??/span>
+                            </p>
+                    </div>
+                </a>
+                <div class="shop-btn" data-name="비바더마 ?곗씪由?耳??留덉뒪??나이아신아마이드" data-price="1000"
+                    data-img="image_updated/niacinamide_mask_v2.png">吏湲?援щℓ?섍린</div>
+            </div>
+
+            <!-- ?곹뭹 5: 湲猷⑦?移섏삩 留덉뒪??-->
+            <div class="product-item reveal">
+                <a href="#glutathione-story" style="display: block;">
+                    <div class="product-thumb">
+                        <span class="product-badge">?좎긽??/span>
+                            <img src="image_updated/glutathione_mask_v2.png" alt="湲猷⑦?移섏삩 留덉뒪??>
+                        </div>
+                        <div class=" product-info">
+                            <p class="brand">VIVA DERMA</p>
+                            <p class="name">02 비바더마 ?곗씪由?耳??留덉뒪??湲猷⑦?移섏삩</p>
+                            <p class="price">
+                                <span style="color: #FF5A5F; margin-right: 5px;">33%</span> 1,000?? <span
+                                    style="font-size: 13px; color: #999; text-decoration: line-through; font-weight: 400; margin-left: 5px;">1,500??/span>
+                            </p>
+                    </div>
+                </a>
+                <div class="shop-btn" data-name="비바더마 ?곗씪由?耳??留덉뒪??湲猷⑦?移섏삩" data-price="1000"
+                    data-img="image_updated/glutathione_mask_v2.png">吏湲?援щℓ?섍린</div>
+            </div>
+
+            <!-- ?곹뭹 6: 콜라겐留덉뒪??-->
+            <div class="product-item reveal">
+                <a href="#collagen-story" style="display: block;">
+                    <div class="product-thumb">
+                        <span class="product-badge">?좎긽??/span>
+                            <img src="image_updated/collagen_mask_v2.png" alt="콜라겐留덉뒪??>
+                        </div>
+                        <div class=" product-info">
+                            <p class="brand">VIVA DERMA</p>
+                            <p class="name">02 비바더마 ?곗씪由?耳??留덉뒪??콜라겐/p>
+                            <p class="price">
+                                <span style="color: #FF5A5F; margin-right: 5px;">33%</span> 1,000?? <span
+                                    style="font-size: 13px; color: #999; text-decoration: line-through; font-weight: 400; margin-left: 5px;">1,500??/span>
+                            </p>
+                    </div>
+                </a>
+                <div class="shop-btn" data-name="비바더마 ?곗씪由?耳??留덉뒪??콜라겐 data-price=" 1000"
+                    data-img="image_updated/collagen_mask_v2.png">吏湲?援щℓ?섍린</div>
+            </div>
+
+            <!-- ?곹뭹 7: 트러블 패치 -->
+            <div class="product-item reveal">
+                <a href="#trouble-patch-story" style="display: block;">
+                    <div class="product-thumb">
+                        <span class="product-badge">?좎긽??/span>
+                            <img src="image_updated/revised_trouble_patch.png" alt="솔레비아 트러블 패치" class="patch-crop">
+                    </div>
+                    <div class="product-info">
+                        <p class="brand">VIVA DERMA</p>
+                        <p class="name">03 솔레비아 트러블 패치</p>
+                        <p class="price">
+                            <span style="color: #FF5A5F; margin-right: 5px;">20%</span> 8,000?? <span
+                                style="font-size: 13px; color: #999; text-decoration: line-through; font-weight: 400; margin-left: 5px;">10,000??/span>
+                        </p>
+                    </div>
+                </a>
+                <div class="shop-btn" data-name="솔레비아 트러블 패치" data-price="8000"
+                    data-img="image_updated/revised_trouble_patch.png">吏湲?援щℓ?섍린</div>
+            </div>
+        </div>
+        </section>
+
+        <!-- 1. 에덴 백토 留덉뒪???곸꽭 (100% Original Restore) -->
+        <section class="product-story" id="eden-story">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+                <div class="section-header" style="text-align: center; margin-bottom: 60px;">
+                    <h2
+                        style="font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 300; letter-spacing: 0.1em; color: #111;">
+                        제품 스토리/h2>
+                        <div class="divider" style="width: 50px; height: 1px; background: #63886f; margin: 20px auto;">
+                        </div>
+                        <h3
+                            style="font-family: 'Inter', sans-serif; font-size: 20px; color: #003366; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 20px;">
+                            01 에덴 ?붿씠???대젅??백토 留덉뒪?? </h3>
+                </div>
+
+                <div class="story-slider-container">
+                    <div class="story-slider">
+                        <!-- Slide 1 -->
+                        <div class="story-slide active">
+                            <img src="image_updated/detail_1.png" alt="?щ씪?대뱶 1">
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="story-slide">
+                            <img src="image_updated/detail_2.png" alt="?щ씪?대뱶 2">
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="story-slide">
+                            <img src="image_updated/detail_3.png" alt="?щ씪?대뱶 3">
+                        </div>
+                        <!-- Slide 4 -->
+                        <div class="story-slide">
+                            <img src="image_updated/detail_4.png" alt="?щ씪?대뱶 4">
+                        </div>
+                        <!-- Slide 5 -->
+                        <div class="story-slide">
+                            <img src="image_updated/Gemini_Generated_Image_v8odsjv8odsjv8od.png" alt="?щ씪?대뱶 5">
+                        </div>
+                    </div>
+
+                    <!-- Navigation -->
+                    <button class="slider-arrow prev">??/button>
+                        <button class="slider-arrow next">??/button>
+
+                            <div class="slider-dots">
+                                <span class="dot active" data-index="0"></span>
+                                <span class="dot" data-index="1"></span>
+                                <span class="dot" data-index="2"></span>
+                                <span class="dot" data-index="3"></span>
+                                <span class="dot" data-index="4"></span>
+                            </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 비바더마 留덉뒪?ы뙥 洹몃９ ??댄? -->
+        <div class="story-title reveal" style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
+            <h4
+                style="font-family: 'Inter', sans-serif; font-size: 20px; color: #003366; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase;">
+                02 비바더마 ?곗씪由?耳??留덉뒪??(5醫?
+            </h4>
+        </div>
+
+        <!-- 2. 시카 留덉뒪???곸꽭 -->
+        <div class="story-group" id="cica-story">
+            <div class="story-container reveal">
+                <div class="story-flex">
+                    <div class="story-visual">
+                        <img src="image_updated/cica_mask_v2.png" alt="시카 留덉뒪??>
+                    </div>
+                    <div class=" story-content">
+                        <p class="brand"
+                            style="color: #003366; font-weight: 800; text-transform: uppercase; font-size: 14px; margin-bottom: 10px;">
+                            VIVA DERMA</p>
+                        <h5 style="color: #003366; font-weight: 900; text-transform: uppercase; font-size: 20px;">
+                            비바더마 ?곗씪由?耳??留덉뒪??시카</h5>
+                        <p class="tags">#誘쇨컧?쇰?진정 #?λ꼍媛뺥솕?붾（??#4-시카肄ㅽ뵆?됱뒪</p>
+                        <div class="detail-info">
+                            <div class="info-item">
+                                <span class="label">?듭떖 ?깅텇</span>
+                                <p class="desc">蹂묓? 異붿텧臾?- ?몃? ?먭레?쇰줈 ?덈??댁쭊 ?쇰?瑜?鍮좊Ⅴ寃?진정?쒗궢?덈떎.</p>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">?뚰겕?濡쒖?</span>
+                                <p class="desc">4-시카 肄ㅽ뵆?됱뒪 湲곗닠(?꾩떆?꾪떛?좎뵪????4醫?蹂묓? ?듭떖 ?깅텇)??吏묒빟?섏뼱 ?덉뒿?덈떎.</p>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">?⑤뒫</span>
+                                <p class="desc">?쇰? 蹂몄뿰???섏쓣 湲몃윭二쇨퀬 臾대꼫吏??쇰? ?λ꼍???꾪깂?섍쾶 耳?댄븯??嫄닿컯???쇰?濡?媛袁몄뼱以띾땲??</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. 엑토인留덉뒪???곸꽭 -->
+        <div class="story-group" id="ectoin-story">
+            <div class="story-container reveal">
+                <div class="story-flex">
+                    <div class="story-visual">
+                        <img src="image_updated/ectoin_mask_v2.png" alt="엑토인留덉뒪??>
+                    </div>
+                    <div class=" story-content">
+                        <p class="brand"
+                            style="color: #003366; font-weight: 800; text-transform: uppercase; font-size: 14px; margin-bottom: 10px;">
+                            VIVA DERMA</p>
+                        <h5 style="color: #003366; font-weight: 900; text-transform: uppercase; font-size: 20px;">
+                            비바더마 ?곗씪由?耳??留덉뒪??엑토인/h5>
+                            <p class="tags">#?섎텇?먯꽍 #媛뺣젰蹂댁뒿 #?묓넗?몄넄猷⑥뀡</p>
+                            <div class="detail-info">
+                                <div class="info-item">
+                                    <span class="label">?듭떖 ?깅텇</span>
+                                    <p class="desc">엑토인- 媛뺣젰???섎텇 ?먯꽍 ??븷???섏뿬 ?몃? ?섍꼍?쇰줈遺???쇰?瑜??덉쟾?섍쾶 蹂댄샇?⑸땲??</p>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">?뚰겕?濡쒖?</span>
+                                    <p class="desc">?遺꾩옄 ?덉븣猷⑤줎?곗씠 ?쇰? 媛곸쭏痢?源딆닕??移⑦닾?섏뿬 鍮덊땲?녿뒗 蹂댁뒿???쒓났?⑸땲??</p>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">?⑤뒫</span>
+                                    <p class="desc">嫄댁“?섍퀬 硫붾쭏瑜?피부에利됯컖?곸씤 ?섎텇??怨듦툒?섏뿬 ?띾떦源???닿껐?섍퀬 已已???꾨젰??遺?ы빀?덈떎.
+                                    </p>
+                                </div>
+                            </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. 나이아신아마이드 留덉뒪???곸꽭 -->
+        <div class="story-group" id="niacinamide-story">
+            <div class="story-container reveal">
+                <div class="story-flex">
+                    <div class="story-visual">
+                        <img src="image_updated/niacinamide_mask_v2.png" alt="나이아신아마이드 留덉뒪??>
+                    </div>
+                    <div class=" story-content">
+                        <p class="brand"
+                            style="color: #003366; font-weight: 800; text-transform: uppercase; font-size: 14px; margin-bottom: 10px;">
+                            VIVA DERMA</p>
+                        <h5 style="color: #003366; font-weight: 900; text-transform: uppercase; font-size: 20px;">
+                            비바더마 ?곗씪由?耳??留덉뒪??나이아신아마이드</h5>
+                        <p class="tags">#愿묒콈遺?ㅽ똿 #?쇱?議곗젅耳??#釉뚮씪?댄듃??/p>
+                        <div class="detail-info">
+                            <div class="info-item">
+                                <span class="label">?듭떖 ?깅텇</span>
+                                <p class="desc">나이아신아마이드 - 硫쒕씪???대룞???듭젣?섏뿬 湲곕?, 二쇨렐源??꾪솕 諛??쇰? ?ㅼ쓣 媛쒖꽑?⑸땲??</p>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">?곹샇 ?묒슜</span>
+                                <p class="desc">留덈뜲移댁냼?ъ씠???깅텇???몃윭釉?諛?誘쇨컧 遺?꾨? 진정?쒗궎硫?源⑤걮???쇰? 諛뷀깢??議곗꽦?⑸땲??</p>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">?듭떖 ?⑤뒫</span>
+                                <p class="desc">移숈튃???쇰?瑜?留묎퀬 ?щ챸?섍쾶 媛袁몄뼱二쇰ŉ ?좎닔遺?諛몃윴?ㅻ? 議곗젅?섏뿬 踰덈뱾嫄곕┝ ?녿뒗
+                                    愿묒콈瑜??좎궗?⑸땲??</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. 湲猷⑦?移섏삩 留덉뒪???곸꽭 -->
+        <div class="story-group" id="glutathione-story">
+            <div class="story-container reveal">
+                <div class="story-flex">
+                    <div class="story-visual">
+                        <img src="image_updated/glutathione_mask_v2.png" alt="湲猷⑦?移섏삩 留덉뒪??>
+                    </div>
+                    <div class=" story-content">
+                        <p class="brand"
+                            style="color: #003366; font-weight: 800; text-transform: uppercase; font-size: 14px; margin-bottom: 10px;">
+                            VIVA DERMA</p>
+                        <h5 style="color: #003366; font-weight: 900; text-transform: uppercase; font-size: 20px;">
+                            비바더마 ?곗씪由?耳??留덉뒪??湲猷⑦?移섏삩</h5>
+                        <p class="tags">#媛뺣젰??궛??#?꾨젰?앷린異⑹쟾 #?ㅺ린耳??/p>
+                        <div class="detail-info">
+                            <div class="info-item">
+                                <span class="label">?듭떖 ?깅텇</span>
+                                <p class="desc">湲猷⑦?移섏삩 - ?곸썡????궛???④낵濡??쒖꽦?곗냼瑜??듭젣?섍퀬 피부에留묒? ?앷린瑜?遺?ы빀?덈떎.</p>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">?듭떖 湲곗닠</span>
+                                <p class="desc">?섏씠?쒕·?쇱씠利덈뱶 肄쒕씪寃먯씠 ?쇰? 源딆닕???≪닔?섏뼱 臾대꼫吏??꾨젰??珥섏킌?섍쾶 ?≪븘以띾땲??</p>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">?듭떖 ?⑤뒫</span>
+                                <p class="desc">?몄꽍?섍퀬 ?섏쓣 ?껋? 피부에?띾????곸뼇媛먯쓣 ?꾨떖?섏뿬 嫄닿컯???ㅺ린? ?깃????꾨젰???섏갼?꾩쨳?덈떎.</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. 콜라겐留덉뒪???곸꽭 -->
+        <div class="story-group" id="collagen-story">
+            <div class="story-container reveal">
+                <div class="story-flex">
+                    <div class="story-visual">
+                        <img src="image_updated/collagen_mask_v2.png" alt="콜라겐留덉뒪??>
+                    </div>
+                    <div class=" story-content">
+                        <p class="brand"
+                            style="color: #003366; font-weight: 800; text-transform: uppercase; font-size: 14px; margin-bottom: 10px;">
+                            VIVA DERMA</p>
+                        <h5 style="color: #003366; font-weight: 900; text-transform: uppercase; font-size: 20px;">
+                            비바더마 ?곗씪由?耳??留덉뒪??콜라겐/h5>
+                            <p class="tags">#紐④났耳??#?꾨젰吏??#?깊꺊?쒗뵾遺</p>
+                            <div class="detail-info">
+                                <div class="info-item">
+                                    <span class="label">?듭떖 ?깅텇</span>
+                                    <p class="desc">?섏씠?쒕·?쇱씠利덈뱶 콜라겐- ?遺꾩옄濡?遺꾪빐?섏뼱 ?쇰? ?≪닔?⑥씠 ?곗뼱?섎ŉ 嫄댁“??피부에源딆? ?섎텇媛먯쓣
+                                        ?꾨떖?⑸땲??</p>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">?듭떖 湲곗닠</span>
+                                    <p class="desc">?섎텇 蹂댄샇留??뺤꽦 湲곗닠 - ?쇰? ?쒕㈃??蹂댄샇留됱쓣 ?뺤꽦?섏뿬 ?섎텇 ?먯떎??諛⑹??섍퀬 ?섎（ 醫낆씪
+                                        珥됱큺?⑥쓣 ?좎??⑸땲??</p>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">?듭떖 ?⑤뒫</span>
+                                    <p class="desc">?꾨젰 諛??ㅺ린 媛쒖꽑 - ?쇰? ?λ꼍??媛뺥솕?섍퀬 ?꾨젰???뚮났?쒖폒 ?쇰?瑜??듯넻?섍퀬 留ㅻ걚?쎄쾶 媛袁몄뼱
+                                        以띾땲??</p>
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 비바더마 트러블 패치 洹몃９ ??댄? -->
+        <div class="story-title reveal" style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
+            <h4
+                style="font-family: 'Inter', sans-serif; font-size: 20px; color: #003366; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase;">
+                03 솔레비아 트러블 패치
+            </h4>
+        </div>
+
+        <!-- 6. 트러블 패치 ?곸꽭 (怨좊룄??踰꾩쟾) -->
+        <div class="story-group" id="trouble-patch-story">
+            <div class="story-container reveal">
+                <div class="story-flex">
+                    <div class="story-visual">
+                        <img src="image_updated/revised_trouble_patch.png" alt="트러블 패치 硫붿씤" class="patch-crop">
+                    </div>
+                    <div class="story-content">
+                        <p class="brand"
+                            style="color: #003366; font-weight: 800; text-transform: uppercase; font-size: 14px; margin-bottom: 10px;">
+                            VIVA DERMA</p>
+                        <h5 style="color: #003366; font-weight: 900; text-transform: uppercase; font-size: 20px;">
+                            솔레비아 트러블 패치</h5>
+
+                        <p class="tags">#?낇솕?섍린?꾩쭊??#?ъ링?寃잛???#?ㅽ뙚吏묒쨷?붾（??/p>
+
+                        <div class="detail-info">
+                            <div class="info-item">
+                                <span class="label">媛뺣젰??珥덇린 진정</span>
+                                <p class="desc">?쇰? 怨좊???源딆뼱吏湲??? ??200媛쒖쓽 ?뺢탳??留덉씠?щ줈 ?ъ씤?멸? ?좏슚 ?깅텇??怨좊? 遺??源딆닕??吏곸젒
+                                    ?꾨떖?섏뿬 鍮좊Ⅴ寃? 진정?쒗궢?덈떎.</p>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">?꾩깮?곸씠怨?媛꾪렪??蹂닿?</span>
+                                <p class="desc">?꾩슜 ?꾩깮 耳?댁뒪媛 ?ы븿?섏뼱 ?덉뼱 ?⑥? ?⑥튂瑜??몃? ?ㅼ뿼?쇰줈遺???덉쟾?섍퀬 源⑤걮?섍쾶
+                                    蹂닿??????덉뒿?덈떎.</p>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">鍮덊땲?녿뒗 諛李?耳??/span>
+                                    <p class="desc">15mm???됰꼮??????ъ씠利덈줈 ?대뼡 ?ш린???몃윭釉붾룄 ?꾨꼍?섍쾶 而ㅻ쾭?섎ŉ, 피부에援닿끝 ?놁씠
+                                        諛李⑸맗?덈떎.</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- ?섎떒 ?곸꽭 ?뱀쭠 (?대?吏 ????쒓? ?띿뒪???덉씠?꾩썐) -->
+                <!-- ?섎떒 ?곸꽭 ?뱀쭠 (?щ씪?대뜑 ?곸슜) -->
+                <div id="trouble-patch-slider" class="story-container reveal"
+                    style="max-width: 800px; margin: 0 auto; position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <div class="slider-track" style="display: flex; transition: transform 0.5s ease-in-out;">
+                        <!-- ?щ씪?대뱶 1 -->
+                        <div class="slide" style="min-width: 100%;">
+                            <div class="info-card" style="border: none;">
+                                <div class="info-card-img" style="height: 250px;">
+                                    <img src="trouble_patch_delivery_ko.png" alt="?뺢탳???ъ링 ?꾨떖 ?쒖뒪??>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ?щ씪?대뱶 2 -->
+                        <div class=" slide" style="min-width: 100%;">
+                                    <div class="info-card" style="border: none;">
+                                        <div class="info-card-img" style="height: 250px;">
+                                            <img src="trouble_patch_coverage_info.jpg" alt="15mm ????ъ씠利?諛李?而ㅻ쾭">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ?щ씪?대뱶 3 -->
+                                <div class="slide" style="min-width: 100%;">
+                                    <div class="info-card" style="border: none;">
+                                        <div class="info-card-img" style="height: 250px;">
+                                            <img src="trouble_patch_case_info.png" alt="?꾩깮 耳?댁뒪 蹂닿?踰?
+                                        style=" display: block; margin: 0 auto;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 醫뚯슦 ?대룞 踰꾪듉 -->
+                            <button class="slider-btn prev"
+                                style="position: absolute; top: 50%; left: 20px; transform: translateY(-50%); 
+                            background: rgba(255,255,255,0.8); border: none; width: 50px; height: 50px; 
+                            border-radius: 50%; cursor: pointer; font-size: 24px; color: #333; 
+                            z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center;">
+                                &#10094;
+                            </button>
+                            <button class="slider-btn next"
+                                style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); 
+                            background: rgba(255,255,255,0.8); border: none; width: 50px; height: 50px; 
+                            border-radius: 50%; cursor: pointer; font-size: 24px; color: #333; 
+                            z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center;">
+                                &#10095;
+                            </button>
+                        </div>
+                    </div>
+                    </section>
+
+                    <section class="main-section" style="padding-top: 0;">
+                        <!-- ?섎떒 釉뚮옖???대?吏 諛곕꼫 ?곸뿭 -->
+                        <div class="banner-box">
+                            <!-- 釉뚮옖??泥좏븰: 留묒? ?섎뒛 ?대?吏 -->
+                            <div id="brand-story" class="banner-item reveal"
+                                style="background-image: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), url('https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?w=800&q=80'); color: #333; background-position: center; background-size: cover;">
+                                <p
+                                    style="font-size: 14px; letter-spacing: 0.2em; opacity: 1; margin-bottom: 10px; color: #1565C0; font-weight: 700;">
+                                    BRAND STORY
+                                </p>
+                                <h3 style="font-size: 36px; line-height: 1.3; color: #0D47A1; font-weight: 900;">
+                                    ??묓븯吏 ?딅뒗<br>자연주의 철학</h3>
+
+                                <p
+                                    style="margin-bottom: 30px; opacity: 1; font-size: 15px; font-weight: 800; color: #37474F;">
+                                    피부에 ?용뒗 洹??쒓컙源뚯?,<br>자연 그대로의 생명력을 온전히 담았습니다.</p>
+
+                                <a href="#"
+                                    style="border-bottom: 1px solid #0D47A1; color: #0D47A1; font-weight: 600;">Han Soo
+                                    이야기 보기</a>
+                            </div>
+                            <!-- 怨좉컼 ?꾧린: ?곕쑜?섍퀬 源⑤걮???대?吏 -->
+                            <div id="real-reviews" class="banner-item reveal"
+                                style="background-image: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80'); color: #333; background-position: center; background-size: cover;">
+                                <p
+                                    style="font-size: 14px; letter-spacing: 0.2em; opacity: 1; margin-bottom: 10px; color: #00695C; font-weight: 700;">
+                                    REAL REVIEW</p>
+                                <h3 style="font-size: 36px; line-height: 1.3; color: #004D40; font-weight: 900;">
+                                    98%媛 寃쏀뿕??br>??쇱슫 ?쇰? 蹂??/h3>
+
+                                    <p
+                                        style="margin-bottom: 30px; opacity: 1; font-size: 15px; font-weight: 800; color: #37474F;">
+                                        "역시
+                                        Han Soo - 성진? ?ㅻⅤ?ㅼ슂."<br>怨좉컼?섎뱾???앹깮??李먰썑湲곕? 확인하세요.</p>
+
+                                    <a href="#"
+                                        style="border-bottom: 1px solid #004D40; color: #004D40; font-weight: 600;">베스트
+                                        리뷰
+                                        확인</a>
+                            </div>
+                        </div>
+
+                    </section>
+                    </main>
+
+                    <footer>
+                        <div class="footer-inner">
+                            <div>
+                                <h4 class="footer-logo">HAN SOO - 성진(SeongJin)</h4>
+                                <p
+                                    style="font-size: 13px; color: #666; font-weight: 500; margin-bottom: 5px; letter-spacing: -0.02em;">
+                                    상호명: 성진 (SeongJin) | ??쒖옄: ?뺤뿰??| 사업자등록번호: 245-15-01057 <a
+                                        href="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=2451501057" target="_blank"
+                                        style="text-decoration: underline; margin-left: 8px; color: #8DA17E;">[사업자정보확인]</a>
+                                </p>
+                                <p
+                                    style="font-size: 13px; color: #666; font-weight: 500; margin-bottom: 5px; letter-spacing: -0.02em;">
+                                    ?듭떊?먮ℓ?낆떊怨? ??2026-경북영천-0047 ??| 개인정보보호책임자: ?뺤뿰??/p>
+                                <p
+                                    style="font-size: 13px; color: #666; font-weight: 500; margin-bottom: 15px; letter-spacing: -0.02em;">
+                                    주소: 寃쎌긽遺곷룄 ?곸쿇??留앹젙1湲?171, 112??2403??(?쒖떊THE?댁쁺泥쒗띁?ㅽ듃)</p>
+                                <p
+                                    style="font-size: 18px; font-weight: 800; color: #111; margin-bottom: 8px; font-family: var(--font-accent);">
+                                    CUSTOMER SERVICE: 1551-0605</p>
+                                <p style="font-weight: 500; color: #666; font-size: 13px; margin-bottom: 5px;">EMAIL:
+                                    spoindo@naver.com
+                                </p>
+                                <p style="font-weight: 500; color: #888; font-size: 12px;">CS CENTER: 평일 10:00 - 17:00
+                                    (LUNCH 12:00 -
+                                    13:00 / ?? ?? 怨듯쑕???대Т)</p>
+                                <div
+                                    style="margin-top: 20px; padding: 12px 15px; background: #f8f9fa; border-radius: 8px; display: inline-block;">
+                                    <p
+                                        style="font-size: 12px; color: #004da0; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                                        <i class="fas fa-shield-alt"></i> IBK 援щℓ?덉쟾?쒕퉬???먯뒪?щ줈) 媛???낆껜
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <p style="font-weight: 700; margin-bottom: 20px; color: #000;">?쇳븨媛?대뱶</p>
+                                <p><a href="#">주문 목록</a></p>
+                                <p><a href="#">장바구니</a></p>
+                                <p><a href="#">愿???곹뭹</a></p>
+                            </div>
+                            <div>
+                                <p style="font-weight: 700; margin-bottom: 20px; color: #000;">怨좉컼吏??/p>
+                                <p><a href="tos.html">이용약관</a></p>
+                                <p><a href="privacy.html">개인정보처리방침</a></p>
+                                <p><a href="#">회사소개</a></p>
+                            </div>
+                            <div>
+                                <p style="font-weight: 700; margin-bottom: 20px; color: #000;">NEWSLETTER</p>
+                                <p>한수의?덈줈???뚯떇怨??쒗깮??諛쏆븘蹂댁꽭??</p>
+                                <div
+                                    style="border-bottom: 1px solid #ccc; margin-top: 20px; padding-bottom: 5px; display: flex;">
+                                    <input type="text" placeholder="이메일 주소"
+                                        style="border: none; outline: none; flex: 1; background: transparent;">
+                                    <button
+                                        style="border: none; background: none; font-weight: 700; font-size: 11px;">구독하기</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 50px; text-align: center; color: #bbb; font-size: 11px;">
+                            <span>&copy; 2026 Han Soo - 성진. 紐⑤뱺 沅뚮━ 蹂댁쑀.</span>
+                        </div>
+                    </footer>
+
+                    <!-- Checkout Modal HTML -->
+                    <div class="modal-overlay" id="checkoutOverlay">
+                        <div class="checkout-modal">
+                            <button class="modal-close" id="closeCheckout"><i class="fas fa-times"></i></button>
+                            <div class="checkout-header">
+                                <h2>二쇰Ц/寃곗젣</h2>
+                                <p>二쇰Ц???꾪빐 ?꾨옒 ?뺣낫瑜??낅젰??二쇱꽭??</p>
+                            </div>
+
+                            <div class="checkout-section">
+                                <span class="section-label">二쇰Ц ?곹뭹</span>
+                                <div id="cartItemsList">
+                                    <!-- Dynamic cart items will be injected here -->
+                                </div>
+                                <button class="add-more-btn" id="addMoreProduct"
+                                    style="width: 100%; justify-content: center; border-style: solid; background: #fafafa;"><i
+                                        class="fas fa-plus"></i> ?ㅻⅨ ?곹뭹 ???닿린</button>
+                            </div>
+
+                            <div class="checkout-section">
+                                <span class="section-label">諛곗넚 ?뺣낫</span>
+                                <div class="form-group">
+                                    <input type="text" placeholder="?섎졊???깊븿" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" placeholder="?곕씫泥?(010-0000-0000)" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" placeholder="二쇱냼 (?꾨줈紐?二쇱냼)" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" placeholder="?곸꽭 二쇱냼" class="form-input">
+                                </div>
+                            </div>
+
+                            <div class="checkout-section">
+                                <span class="section-label">寃곗젣 ?섎떒</span>
+                                <div class="payment-grid">
+                                    <div class="payment-option">
+                                        <input type="radio" name="payment-method" id="pay-card" value="card" checked>
+                                        <label for="pay-card" class="payment-label">
+                                            <i class="fas fa-credit-card"></i>
+                                            <span>?좎슜/泥댄겕移대뱶</span>
+                                        </label>
+                                    </div>
+                                    <div class="payment-option">
+                                        <input type="radio" name="payment-method" id="pay-bank" value="bank-transfer">
+                                        <label for="pay-bank" class="payment-label">
+                                            <i class="fas fa-university"></i>
+                                            <span>臾댄넻???낃툑</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Cash Receipt Container (Initially Hidden) -->
+                                <div id="cash-receipt-container">
+                                    <span class="section-label" style="font-size: 11px; color: #555;">?꾧툑?곸닔利??좎껌</span>
+                                    <div class="receipt-types">
+                                        <label class="type-label">
+                                            <input type="radio" name="receipt-type" value="personal" checked>
+                                            媛쒖씤?뚮뱷怨듭젣
+                                        </label>
+                                        <label class="type-label">
+                                            <input type="radio" name="receipt-type" value="business">
+                                            ?ъ뾽?먯쬆鍮? </label>
+                                    </div>
+                                    <input type="text" placeholder="?대???踰덊샇 ?먮뒗 ?ъ뾽?먮쾲?? class=" form-input"
+                                        style="background: #fff;">
+                                </div>
+                            </div>
+
+                            <div class="checkout-footer">
+                                <div class="shipping-row"
+                                    style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 15px; color: #444; padding: 0 5px;">
+                                    <span style="font-weight: 500;">諛곗넚鍮? ?ъ옣鍮?/span>
+                                        <span id="shippingFee" style="font-weight: 700; color: #111;">3,500??/span>
+                                </div>
+                                <div class="total-row"
+                                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding: 0 5px;">
+                                    <span class="total-label"
+                                        style="font-size: 18px; font-weight: 800; color: #000;">珥?寃곗젣 湲덉븸</span>
+                                    <span class="total-amount" id="finalTotal"
+                                        style="font-size: 26px; font-weight: 900; color: var(--secondary-green);">6,000??/span>
+                                </div>
+                                <button class="place-order-btn" id="submitOrderBtn">寃곗젣?섍린</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        // --- Modal & Checkout Logic ---
+                        const checkoutOverlay = document.getElementById('checkoutOverlay');
+                        const openCheckoutBtns = document.querySelectorAll('.hero-cta, .cta-button, .buy-button, .shop-btn');
+                        const closeCheckoutBtn = document.getElementById('closeCheckout');
+                        const submitOrderBtn = document.getElementById('submitOrderBtn');
+                        const paymentRadios = document.querySelectorAll('input[name="payment-method"]');
+                        const cashReceiptContainer = document.getElementById('cash-receipt-container');
+
+                        // Cart State
+                        let cart = [];
+
+                        // Support for direct onclick addToCart
+                        window.addToCart = function (id, name, price, img) {
+                            const existingItem = cart.find(item => item.name === name);
+                            if (existingItem) {
+                                existingItem.qty += 1;
+                            } else {
+                                cart.push({ name, price, img, qty: 1 });
+                            }
+                            renderCart();
+                            checkoutOverlay.classList.add('active');
+                            document.body.style.overflow = 'hidden';
+                        };
+
+                        function renderCart() {
+                            const listContainer = document.getElementById('cartItemsList');
+                            listContainer.innerHTML = '';
+
+                            let productSubtotal = 0;
+
+                            cart.forEach((item, index) => {
+                                productSubtotal += item.price * item.qty;
+
+                                const itemHtml = `
+                    <div class="order-summary-card" style="position: relative;">
+                        <img src="${item.img}" alt="${item.name}" class="summary-img">
+                        <div class="summary-info" style="flex: 1;">
+                            <h4 style="font-size: 14px; margin-bottom: 5px; padding-right: 40px;">${item.name}</h4>
+                            <div class="quantity-control" style="margin-top: 0; padding: 2px 8px;">
+                                <button class="qty-btn" onclick="changeCartQty(${index}, -1)"><i class="fas fa-minus" style="font-size: 10px;"></i></button>
+                                <span class="order-qty" style="font-size: 13px;">${item.qty}</span>
+                                <button class="qty-btn" onclick="changeCartQty(${index}, 1)"><i class="fas fa-plus" style="font-size: 10px;"></i></button>
+                                <span style="margin-left: 10px; font-size: 12px; color: #888;">${(item.price * item.qty).toLocaleString()}??/span>
+                            </div>
+                        </div>
+                        <button onclick="removeFromCart(${index})" 
+                                style="position: absolute; top: 15px; right: 15px; background: #f0f0f0; border: none; color: #999; cursor: pointer; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 500; transition: all 0.2s;">
+                            삭제
+                        </button>
+                    </div>
+                `;
+                                listContainer.insertAdjacentHTML('beforeend', itemHtml);
+                            });
+
+                            const shipping = (productSubtotal >= 50000 || cart.length === 0) ? 0 : 3500;
+                            const finalTotal = productSubtotal + shipping;
+
+                            document.getElementById('shippingFee').textContent = (shipping === 0 && productSubtotal > 0) ? "무료" : `${shipping.toLocaleString()}??;
+            document.getElementById('finalTotal').textContent = `${ finalTotal.toLocaleString() }??;
+                        }
+
+                        window.changeCartQty = function (index, delta) {
+                            cart[index].qty += delta;
+                            if (cart[index].qty < 1) cart[index].qty = 1;
+                            renderCart();
+                        };
+
+                        window.removeFromCart = function (index) {
+                            cart.splice(index, 1);
+                            renderCart();
+                        };
+
+                        // Open Modal & Add to Cart
+                        openCheckoutBtns.forEach(btn => {
+                            btn.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+
+                                const name = btn.getAttribute('data-name');
+                                const price = parseInt(btn.getAttribute('data-price'));
+                                const img = btn.getAttribute('data-img');
+
+                                // Check if already in cart
+                                const existingItem = cart.find(item => item.name === name);
+                                if (existingItem) {
+                                    existingItem.qty += 1;
+                                } else {
+                                    cart.push({ name, price, img, qty: 1 });
+                                }
+
+                                renderCart();
+                                checkoutOverlay.classList.add('active');
+                                document.body.style.overflow = 'hidden';
+                            });
+                        });
+
+                        // Add More Product Logic
+                        document.getElementById('addMoreProduct').addEventListener('click', () => {
+                            checkoutOverlay.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                            document.getElementById('all-products').scrollIntoView({ behavior: 'smooth' });
+                        });
+
+                        // Close Modal
+                        closeCheckoutBtn.addEventListener('click', () => {
+                            checkoutOverlay.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        });
+
+                        // Close on Overlay Click
+                        checkoutOverlay.addEventListener('click', (e) => {
+                            if (e.target === checkoutOverlay) {
+                                checkoutOverlay.classList.remove('active');
+                                document.body.style.overflow = 'auto';
+                            }
+                        });
+
+                        // Toggle Cash Receipt
+                        paymentRadios.forEach(radio => {
+                            radio.addEventListener('change', () => {
+                                if (radio.value === 'bank-transfer') {
+                                    cashReceiptContainer.style.display = 'block';
+                                } else {
+                                    cashReceiptContainer.style.display = 'none';
+                                }
+                            });
+                        });
+
+                        // Submit Order (Simulation)
+                        submitOrderBtn.addEventListener('click', () => {
+                            checkoutOverlay.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                            showThankYou();
+                        });
+
+                        // Simple script for the warm payment message simulation
+                        function showThankYou() {
+                            const msg = `
+                <div id="thank-you-modal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; display:flex; align-items:center; justify-content:center; color:#fff; text-align:center; backdrop-filter: blur(8px);">
+                    <div style="background:#fff; color:#333; padding:50px; border-radius:30px; max-width:550px; width:90%; border:1px solid rgba(255,255,255,0.2); box-shadow: 0 40px 80px rgba(0,0,0,0.4);">
+                        <div style="font-size: 60px; margin-bottom: 20px;">?뙼</div>
+                        <h2 style="font-family:'Cormorant Garamond', serif; font-size:36px; margin-bottom:20px; font-weight:400; letter-spacing:0.05em;">二쇰Ц ?뺤꽦猿?紐⑥떆寃좎뒿?덈떎</h2>
+                        <p style="font-size:16px; line-height:1.9; margin-bottom:40px; color: #555;">
+                            한수(HAN SOO)瑜?誘욧퀬 ?좏깮??二쇱뀛??源딆씠 媛먯궗?쒕┰?덈떎.<br><br>
+                            怨좉컼?섏쓽 ?뚯쨷???뺤꽦???댁븘,<br>
+                            ?먯뿰???먮꼫吏瑜??щ퓤 ?댁? ?쒗뭹??媛???좎꽑???곹깭濡?br>
+                            ?뺤꽦猿??ъ옣?섏뿬 ?덉쟾?섍쾶 諛곗넚???쒕━寃좎뒿?덈떎.<br><br>
+                            <span style="color: var(--secondary-green); font-weight: 700;">?뱀떊???쇱긽??嫄닿컯???댁떇???꾩갑?섍만 諛붾엻?덈떎.</span>
+                        </p>
+                        <button onclick="document.getElementById('thank-you-modal').remove()" style="background:#000; color:#fff; border:none; padding:18px 60px; border-radius:50px; cursor:pointer; font-weight:700; font-size: 16px; transition: all 0.3s;" onmouseover="this.style.background='#8DA17E'" onmouseout="this.style.background='#000'">媛먯궗?⑸땲??/button>
+                    </div>
+                </div>
+            `;
+                            document.body.insertAdjacentHTML('beforeend', msg);
+                        }
+                        // --- Image Slider Class ---
+                        class ImageSlider {
+                            constructor(containerId, startSlide = 0) {
+                                this.container = document.getElementById(containerId);
+                                if (!this.container) return;
+
+                                this.track = this.container.querySelector('.slider-track');
+                                this.slides = this.container.querySelectorAll('.slide');
+                                this.totalSlides = this.slides.length;
+                                this.currentSlide = startSlide;
+
+                                // Initial setup
+                                this.updateSlider();
+
+                                // Button Listeners
+                                const prevBtn = this.container.querySelector('.slider-btn.prev');
+                                const nextBtn = this.container.querySelector('.slider-btn.next');
+
+                                if (prevBtn) {
+                                    // User Request: Left button moves to RIGHT (Next Slide)
+                                    prevBtn.addEventListener('click', () => this.moveSlide(1));
+                                }
+                                if (nextBtn) {
+                                    // User Request: Right button moves to LEFT (Prev Slide)
+                                    nextBtn.addEventListener('click', () => this.moveSlide(-1));
+                                }
+                            }
+
+                            moveSlide(direction) {
+                                this.currentSlide += direction;
+                                if (this.currentSlide < 0) {
+                                    this.currentSlide = this.totalSlides - 1;
+                                } else if (this.currentSlide >= this.totalSlides) {
+                                    this.currentSlide = 0;
+                                }
+                                this.updateSlider();
+
+                                // Add resize listener to handle responsive width changes
+                                window.addEventListener('resize', () => this.updateSlider());
+                            }
+
+                            updateSlider() {
+                                if (this.track && this.slides.length > 0) {
+                                    // Get absolute precise float width
+                                    const rect = this.container.getBoundingClientRect();
+                                    const containerWidth = rect.width;
+
+                                    this.slides.forEach(slide => {
+                                        slide.style.width = `${containerWidth}px`;
+                                        slide.style.flex = `0 0 ${containerWidth}px`;
+                                        slide.style.margin = '0';
+                                        slide.style.marginRight = '-1px'; // Overlap slightly to prevent gaps
+                                        slide.style.padding = '0';
+                                    });
+
+                                    // Accurate offset using float width
+                                    const offset = this.currentSlide * containerWidth;
+                                    this.track.style.transform = `translate3d(-${offset}px, 0, 0)`;
+                                }
+                            }
+                        }
+
+                        document.addEventListener('DOMContentLoaded', () => {
+
+                            // Trouble Patch Slider initialization with small delay or on window load to ensure layout
+                            const initSlider = () => {
+                                new ImageSlider('trouble-patch-slider', 0);
+                            };
+
+                            if (document.readyState === 'complete') {
+                                initSlider();
+                            } else {
+                                window.addEventListener('load', initSlider);
+                            }
+
+                            // Scroll animation observer
+                            const observerOptions = { threshold: 0.1 };
+                            const observer = new IntersectionObserver((entries) => {
+                                entries.forEach(entry => {
+                                    if (entry.isIntersecting) {
+                                        entry.target.classList.add('active');
+                                    }
+                                });
+                            }, observerOptions);
+
+                            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+                            // Product Story Slider Logic
+                            const slider = document.querySelector('.story-slider');
+                            const slides = document.querySelectorAll('.story-slide');
+                            const prevBtn = document.querySelector('.slider-arrow.prev');
+                            const nextBtn = document.querySelector('.slider-arrow.next');
+                            const dots = document.querySelectorAll('.dot');
+                            let currentSlide = 0;
+
+                            function updateSlider(index) {
+                                if (!slider) return;
+                                if (index < 0) index = slides.length - 1;
+                                if (index >= slides.length) index = 0;
+
+                                currentSlide = index;
+                                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+                                dots.forEach(dot => dot.classList.remove('active'));
+                                if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+                            }
+
+                            if (prevBtn) prevBtn.addEventListener('click', () => updateSlider(currentSlide - 1));
+                            if (nextBtn) nextBtn.addEventListener('click', () => updateSlider(currentSlide + 1));
+
+                            dots.forEach(dot => {
+                                dot.addEventListener('click', () => {
+                                    const index = parseInt(dot.getAttribute('data-index'));
+                                    updateSlider(index);
+                                });
+                            });
+                            // Initial update
+                            updateSlider(0);
+                        });
+                    </script>
+</body>
+
+</html>
+```

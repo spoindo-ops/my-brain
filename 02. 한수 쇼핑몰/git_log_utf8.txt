@@ -1,0 +1,15 @@
+﻿eba912e 2026-03-02 10:49:36 +0900 Fix hero height calculating using aspect-ratio so mobile view scales correctly and matches PC proportions
+de380ca 2026-03-02 10:36:51 +0900 Revert mobile scaling to 1400px to match PC view perfectly
+c4acd74 2026-03-02 10:31:41 +0900 Revert unintended changes to index.html
+0c70f2b 2026-03-02 10:28:17 +0900 Force PC view styling on mobile index.html using JS scaling and 1600px width
+df394f0 2026-03-02 10:19:44 +0900 Optimize mobile PC view scaling: increased virtual width to 1600px for better side margins and resolved 'stuck' button issue.
+d4133b4 2026-03-01 20:30:22 +0900 Replace Hydration highlight image with latest user upload
+64bc50d 2026-03-01 20:25:46 +0900 Update Hydration highlight image to borderless full-shot version
+e29b57a 2026-03-01 19:54:53 +0900 Swap 3rd and 4th customer review images as requested
+5016f4a 2026-03-01 19:52:23 +0900 Adjust hero box position slightly to the right for better balance
+13167d5 2026-03-01 19:50:01 +0900 Move buy box further left and change Natural & Science text to yellow
+86a4341 2026-03-01 19:44:10 +0900 Precise hero box positioning at midpoint and blue Natural & Science text
+9a06181 2026-03-01 19:33:06 +0900 Optimize hero layout: move box further left (10-15%) and set white background
+e1ab332 2026-03-01 19:30:21 +0900 Final hero layout optimization: white background and moved content box left
+b0b0e4e 2026-03-01 19:24:24 +0900 Optimize hero section: White background, shrunk content box, and centered original high-res image
+039e602 2026-03-01 19:21:04 +0900 Finalized hero layout: moved box left, tightened margins, and fixed background color

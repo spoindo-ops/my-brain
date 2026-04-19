@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDEN Silver Mask - 이미지 다운로드</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        .instructions {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .instructions h2 {
+            color: #333;
+            margin-top: 0;
+        }
+
+        .instructions p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .image-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            cursor: pointer;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="instructions">
+        <h2>📥 이미지 다운로드 방법</h2>
+        <p>
+            아래 이미지 위에서 <span class="highlight">우클릭</span> →
+            <span class="highlight">"다른 이름으로 이미지 저장"</span> 선택
+        </p>
+        <p style="font-size: 14px; color: #999;">
+            또는 이미지를 드래그해서 폴더에 드롭하세요
+        </p>
+    </div>
+
+    <div class="image-container">
+        <img src="https://via.placeholder.com/640x400/e0e0e0/333333?text=EDEN+Silver+Mask+%0A%0A%EC%9A%B0%ED%81%B4%EB%A6%AD%ED%95%98%EC%97%AC+%EC%A0%80%EC%9E%A5%ED%95%98%EC%84%B8%EC%9A%94"
+            alt="EDEN Silver Mask" title="우클릭하여 저장하세요">
+    </div>
+
+    <script>
+        // 이미지 클릭 시 안내 메시지
+        document.querySelector('img').addEventListener('click', function () {
+            alert('이미지 위에서 우클릭 → "다른 이름으로 이미지 저장"을 선택하세요!');
+        });
+    </script>
+</body>
+
+</html>

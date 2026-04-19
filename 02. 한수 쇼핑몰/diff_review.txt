@@ -1,0 +1,57 @@
+﻿diff --git a/eden_mask.html b/eden_mask.html
+index 2107fee..3bb8df9 100644
+--- a/eden_mask.html
++++ b/eden_mask.html
+@@ -1,5 +1,5 @@
+ 癤?!DOCTYPE html>
+-<!-- Force Deploy: 2026-03-01 18:50 -->
++<!-- Force Deploy: 2026-02-26 22:04 -->
+ <html lang="ko">
+ 
+ <head>
+@@ -18,15 +18,15 @@
+         rel="stylesheet">
+ 
+     <!-- External CSS -->
+-    <link rel="stylesheet" href="eden-cosmetics/eden_styles.css?v=v22_aspect_1500">
++    <link rel="stylesheet" href="eden-cosmetics/eden_styles.css?v=fresh3">
+     <script>
+         function forcePCView() {
+             var screenW = window.innerWidth || document.documentElement.clientWidth;
+-            if (screenW < 1500) {
+-                var ratio = screenW / 1500;
++            if (screenW < 1400) {
++                var ratio = screenW / 1400;
+                 document.body.style.transform = 'scale(' + ratio + ')';
+                 document.body.style.transformOrigin = 'top left';
+-                document.body.style.width = '1500px';
++                document.body.style.width = '1400px';
+                 document.body.style.overflowX = 'hidden';
+             } else {
+                 document.body.style.transform = 'none';
+@@ -90,7 +90,7 @@
+                 </div>
+                 <div class="highlight-card">
+                     <div class="highlight-image">
+-                        <img src="image updated/eden_mask_hydration_v3.jpg?v=v3" alt="Hydration">
++                        <img src="image updated/eden_mask_hydration_new_shifted_max.jpg" alt="Hydration">
+                     </div>
+                     <h3>癒멸툑?? 珥됱큺?섍쾶</h3>
+                     <p><strong>留덈Ⅴ吏 ?딅뒗 ?섎텇媛?/strong><br>?대젅???⑹? 嫄댁“?섎떎? ?멸껄??源쇱뒿?덈떎. ?살뼱???꾩뿉???밴? ?놁씠 珥됱큺???섎텇 蹂댄샇留?</p>
+@@ -218,13 +218,13 @@
+                     <img src="eden_promo.png" alt="怨좉컼 由щ럭 1">
+                 </div>
+                 <div class="review-card">
+-                    <img src="image updated/eden_mask_review_2_new.jpg" alt="怨좉컼 由щ럭 2">
++                    <img src="eden-cosmetics/KakaoTalk_20260121_100334286.png" alt="怨좉컼 由щ럭 2">
+                 </div>
+                 <div class="review-card">
+-                    <img src="image updated/Gemini_Generated_Image_r5ouqdr5ouqdr5ou.png" alt="怨좉컼 由щ럭 3">
++                    <img src="image updated/Gemini_Generated_Image_pjny6qpjny6qpjny.png" alt="怨좉컼 由щ럭 3">
+                 </div>
+                 <div class="review-card">
+-                    <img src="image updated/eden_mask_review_3_new.jpg?v=final_rev" alt="怨좉컼 由щ럭 4">
++                    <img src="image updated/Gemini_Generated_Image_r5ouqdr5ouqdr5ou.png" alt="怨좉컼 由щ럭 4">
+                 </div>
+             </div>
+         </div>
