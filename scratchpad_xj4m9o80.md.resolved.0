@@ -1,0 +1,7 @@
+# KODARI HTS Dashboard Check Progress
+
+- [ ] Navigate to http://localhost:5173/
+- [ ] Verify rendering of the dashboard
+- [ ] Check console logs for errors (especially data.json)
+- [ ] Capture a screenshot of the dashboard
+- [ ] Report findings to the user
