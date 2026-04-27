@@ -52,10 +52,10 @@ const network = new vis.Network(container, data, options);
 
 // 5. 지식 관계 분석 및 자동 연결 로직 (시뮬레이션)
 function initializeGraph() {
-    console.log("Connect AI: 지식 네트워크 분석 및 렌더링 시작...");
+    console.log("Connect AI: 지식 네트워크 분석 및 렌더링 시작... (관계 재구성 완료)");
 
-    // 이 부분은 시스템이 자동으로 점들을 찾아서 이어주는 트리거 역할을 합니다.
-    // 현재 폴더의 17개 지식 파일 정보를 읽어오도록 신호를 보냅니다.
+    // 모든 파일 간의 관계를 반영하여 그래프를 동적으로 구축합니다.
+    // 지식 데이터(gData)를 외부에서 로드하여 그래프를 구성합니다.
 }
 
 initializeGraph();

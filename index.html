@@ -17,6 +17,32 @@
     </div>
     <div id="network-container"></div>
 
-    <script src="app.js"></script>
+<script type="text/javascript">
+        const gData = {
+            nodes: [
+                { id: 'mrbeast', label: 'MrBeast (스트리머)' },
+                { id: 'combat_ai', label: 'Combat AI (프로)' },
+                { id: 'video_6W_841xoprg', label: 'Video: 6W_841xoprg' },
+                { id: 'video_DXVHmGoCTco', label: 'Video: DXVHmGoCTco' },
+                { id: 'result_analysis', label: '관계 분석 결과' }
+            ],
+            edges: [
+                { source: 'mrbeast', target: 'video_6W_841xoprg' },
+                { source: 'mrbeast', target: 'video_DXVHmGoCTco' },
+                { source: 'combat_ai', target: 'result_analysis' },
+                { source: 'video_6W_841xoprg', target: 'combat_ai' },
+                { source: 'video_DXVHmGoCTco', target: 'combat_ai' }
+            ]
+        };
+
+        const container = document.getElementById('network-container');
+        const options = {
+            nodes: { shape: 'dot', size: 20, font: { size: 14, color: '#ffffff' }, borderWidth: 2, color: { background: '#00cc44', border: '#ffffff' } },
+            edges: { width: 2, color: '#666666', arrows: { to: { enabled: true, scaleFactor: 0.5 } } },
+            physics: { enabled: true, barnesHut: { gravitationalConstant: -3000, springLength: 120 } }
+        };
+
+        new vis.Network(container, gData, options);
+    </script>
 </body>
 </html>
