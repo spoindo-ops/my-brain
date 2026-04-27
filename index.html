@@ -2,24 +2,21 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connect AI 지식 네트워크 시각화</title>
-    <!-- vis.js 라이브러리 로드 -->
-    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <title>Connect AI - 지식 네트워크</title>
+    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
     <style>
-        body { margin: 0; overflow: hidden; background-color: #f4f4f4; }
-        #network-container {
-            width: 100vw;
-            height: 100vh;
-            border: 1px solid #ccc;
-            background-color: #ffffff;
-        }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #0a0a0a; overflow: hidden; }
+        #network-container { width: 100vw; height: 100vh; }
+        .ui-label { position: absolute; top: 20px; left: 20px; color: #00cc44; font-family: sans-serif; z-index: 10; }
     </style>
 </head>
 <body>
-    <!-- 네트워크 시각화가 그려질 컨테이너 -->
+    <div class="ui-label">
+        <h1>✦ 지식 네트워크 · LIVE</h1>
+        <p>17개 지식 분석 완료</p>
+    </div>
     <div id="network-container"></div>
-    <!-- app.js 로드 -->
+
     <script src="app.js"></script>
 </body>
 </html>
