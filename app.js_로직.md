@@ -1,5 +1,6 @@
-id: [app.js_로직]
 ---
+id: [app.js_로직]
+Parent: [_root]
 confidence_score: 1.0
 tags: [JavaScript, Logic]
 last_reinforced: 2026-04-26
@@ -16,7 +17,7 @@ last_reinforced: 2026-04-26
 - **시각화:** `vis-network` 라이브러리를 사용하여 추출된 지식을 노드와 엣지 형태의 그래프로 렌더링합니다.
 
 ## 🔗 지식 연결
-- Parent: [central]
+- Parent: [_root]
 - **Related:** [index.html], [connect_ai_agent.py]
 - **Raw Source:** [app.js]
 
