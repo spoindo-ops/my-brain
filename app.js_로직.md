@@ -1,6 +1,6 @@
 ---
-id: [app.js_로직]
-Parent: [_root]
+id: app.js_로직
+Parent: 분석
 confidence_score: 1.0
 tags: [JavaScript, Logic]
 last_reinforced: 2026-04-26
