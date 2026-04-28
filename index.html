@@ -1,48 +1,465 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>Connect AI - 지식 네트워크</title>
-    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
-    <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #0a0a0a; overflow: hidden; }
-        #network-container { width: 100vw; height: 100vh; }
-        .ui-label { position: absolute; top: 20px; left: 20px; color: #00cc44; font-family: sans-serif; z-index: 10; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect AI · 지식 네트워크</title>
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html {
+      width: 100%; height: 100%;
+      background: #050810;
+      font-family: 'Outfit', sans-serif;
+      overflow: hidden;
+      color: #e0e8ff;
+    }
+
+    /* 배경 그리드 */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    #network-container {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* 헤더 */
+    .header {
+      position: absolute;
+      top: 20px; left: 24px;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #00c8ff, #7b61ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 0.5px;
+    }
+    .header p {
+      font-size: 12px;
+      color: #556080;
+      margin-top: 2px;
+    }
+    .live-dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      background: #00ff88;
+      border-radius: 50%;
+      margin-right: 5px;
+      animation: pulse 1.5s ease-in-out infinite;
+      vertical-align: middle;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:0.4; transform:scale(0.8); }
+    }
+
+    /* 범례 */
+    .legend {
+      position: absolute;
+      bottom: 24px; left: 24px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: #556080;
+    }
+    .legend-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* 상세 패널 */
+    .detail-panel {
+      position: absolute;
+      top: 20px; right: 20px;
+      width: 300px;
+      background: rgba(10,15,30,0.92);
+      border: 1px solid rgba(0,200,255,0.15);
+      border-radius: 14px;
+      padding: 20px;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      transform: translateX(340px);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .detail-panel.open { transform: translateX(0); }
+    .detail-panel h2 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      background: linear-gradient(135deg, #00c8ff, #7b61ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .detail-panel .category-badge {
+      display: inline-block;
+      font-size: 10px;
+      padding: 2px 9px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+    .detail-panel .desc {
+      font-size: 12px;
+      color: #8899bb;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .detail-panel .connections {
+      font-size: 11px;
+      color: #445566;
+    }
+    .detail-panel .connections strong {
+      color: #00c8ff;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .conn-tag {
+      display: inline-block;
+      background: rgba(0,200,255,0.08);
+      border: 1px solid rgba(0,200,255,0.2);
+      border-radius: 6px;
+      padding: 2px 8px;
+      font-size: 10px;
+      color: #00c8ff;
+      margin: 2px;
+    }
+    .close-btn {
+      position: absolute;
+      top: 12px; right: 14px;
+      background: none; border: none;
+      color: #445566; font-size: 18px;
+      cursor: pointer; transition: color 0.2s;
+    }
+    .close-btn:hover { color: #00c8ff; }
+
+    /* 노드 수 카운터 */
+    .counter {
+      position: absolute;
+      bottom: 24px; right: 24px;
+      text-align: right;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .counter .num {
+      font-size: 36px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #00c8ff, #7b61ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+    .counter .label {
+      font-size: 11px;
+      color: #334055;
+    }
+  </style>
 </head>
 <body>
-    <div class="ui-label">
-        <h1>✦ 지식 네트워크 · LIVE</h1>
-        <p>17개 지식 분석 완료</p>
-    </div>
-    <div id="network-container"></div>
 
-<script type="text/javascript">
-        const gData = {
-            nodes: [
-                { id: 'mrbeast', label: 'MrBeast (스트리머)' },
-                { id: 'combat_ai', label: 'Combat AI (프로)' },
-                { id: 'video_6W_841xoprg', label: 'Video: 6W_841xoprg' },
-                { id: 'video_DXVHmGoCTco', label: 'Video: DXVHmGoCTco' },
-                { id: 'result_analysis', label: '관계 분석 결과' }
-            ],
-            edges: [
-                { source: 'mrbeast', target: 'video_6W_841xoprg' },
-                { source: 'mrbeast', target: 'video_DXVHmGoCTco' },
-                { source: 'combat_ai', target: 'result_analysis' },
-                { source: 'video_6W_841xoprg', target: 'combat_ai' },
-                { source: 'video_DXVHmGoCTco', target: 'combat_ai' }
-            ]
-        };
+<div class="header">
+  <h1>✦ Connect AI · 지식 네트워크</h1>
+  <p><span class="live-dot"></span>노드를 클릭하면 상세 정보를 확인할 수 있습니다</p>
+</div>
 
-        const container = document.getElementById('network-container');
-        const options = {
-            nodes: { shape: 'dot', size: 20, font: { size: 14, color: '#ffffff' }, borderWidth: 2, color: { background: '#00cc44', border: '#ffffff' } },
-            edges: { width: 2, color: '#666666', arrows: { to: { enabled: true, scaleFactor: 0.5 } } },
-            physics: { enabled: true, barnesHut: { gravitationalConstant: -3000, springLength: 120 } }
-        };
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#7b61ff"></div>핵심 허브</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#00c8ff"></div>AI · RAG 기술</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ff6b6b"></div>트레이딩 전략</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#00ff88"></div>콘텐츠 · 유튜브</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ffd166"></div>이미지 · 영상 생성</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ff9f43"></div>에이전트 시스템</div>
+</div>
 
-        new vis.Network(container, gData, options);
-    </script>
+<div class="counter">
+  <div class="num">17</div>
+  <div class="label">지식 노드 연결 완료</div>
+</div>
+
+<div class="detail-panel" id="detailPanel">
+  <button class="close-btn" id="closeBtn">✕</button>
+  <h2 id="panelTitle">-</h2>
+  <span class="category-badge" id="panelBadge"></span>
+  <p class="desc" id="panelDesc"></p>
+  <div class="connections">
+    <strong>🔗 연결된 지식</strong>
+    <div id="panelConnections"></div>
+  </div>
+</div>
+
+<div id="network-container"></div>
+
+<script>
+// ─── 노드 데이터 ───────────────────────────────────────────
+const nodeData = {
+  'hub': {
+    title: 'Connect AI Brain',
+    category: '핵심 허브',
+    badge: '🧠 HUB',
+    badgeColor: '#7b61ff',
+    desc: '모든 지식을 연결하는 중앙 허브입니다. AI 1인 기업의 핵심 두뇌로, RAG 기반 지식 검색과 에이전트 자동화 시스템의 중심입니다.',
+    connections: ['ai_1in', 'rag_core', 'agent_sys', 'trading', 'youtube', 'image_gen', 'test_pack']
+  },
+  'ai_1in': {
+    title: 'AI 1인 기업 자동화',
+    category: 'AI · RAG',
+    badge: '🚀 AI BIZ',
+    badgeColor: '#00c8ff',
+    desc: '단순 자동화를 넘어 "지능형 비즈니스"로 전환하는 8주 커리큘럼. RAG 기반 지식 구조화 → 에이전트 자동화 실행의 2단계 접근법.',
+    connections: ['hub', 'rag_core', 'agent_sys', 'image_gen']
+  },
+  'rag_core': {
+    title: 'RAG 핵심 원리',
+    category: 'AI · RAG',
+    badge: '⚙️ RAG',
+    badgeColor: '#00c8ff',
+    desc: 'Retrieval-Augmented Generation. 외부 지식 검색(Retriever) → 강화(Augmented) → 답변 생성(Generator)의 3단계. MIPS 벡터 검색 기반.',
+    connections: ['ai_1in', 'hub', 'agent_sys', 'test_pack']
+  },
+  'agent_sys': {
+    title: '에이전트 시스템',
+    category: '에이전트',
+    badge: '🤖 AGENT',
+    badgeColor: '#ff9f43',
+    desc: 'RAG로 찾은 정보를 바탕으로 AI가 스스로 다음 단계(유튜브 업로드, 이메일 발송 등)를 결정하고 실행하는 자율 에이전트 구조.',
+    connections: ['hub', 'rag_core', 'ai_1in', 'combat_ai', 'youtube']
+  },
+  'trading': {
+    title: '트레이딩 마스터 가이드',
+    category: '트레이딩',
+    badge: '📈 TRADE',
+    badgeColor: '#ff6b6b',
+    desc: '세력(주포) 의도 파악을 위한 실전 매매 지식. 호가창 분석 · 매집차트 패턴 · 거래량 법칙 · 시간대별 공략법 포함.',
+    connections: ['hub', 'hoga', 'chart_pattern', 'volume', 'time_trade']
+  },
+  'hoga': {
+    title: '호가창 0.1초의 비기',
+    category: '트레이딩',
+    badge: '📊 호가',
+    badgeColor: '#ff6b6b',
+    desc: '수평 회전 · 호가 변환 · 마디 호가 · 내가격 비우기 등 세력의 실시간 자금 이동 패턴 읽는 법.',
+    connections: ['trading', 'chart_pattern', 'volume']
+  },
+  'chart_pattern': {
+    title: '초절정 매집차트 패턴',
+    category: '트레이딩',
+    badge: '📉 차트',
+    badgeColor: '#ff6b6b',
+    desc: '대장주 불변의 법칙 · 강매집 · 싹쓸이 패턴. 240일/480일 이평선 기준 포지션 전략.',
+    connections: ['trading', 'hoga', 'volume', 'time_trade']
+  },
+  'volume': {
+    title: '거래량의 비밀',
+    category: '트레이딩',
+    badge: '📦 거래량',
+    badgeColor: '#ff6b6b',
+    desc: '거래량 법칙 3 (기준봉 이후 이틀 급감 후 3일차 슈팅) · 최소 거래량 바닥 지지 타점 포착법.',
+    connections: ['trading', 'chart_pattern', 'hoga']
+  },
+  'time_trade': {
+    title: '시간대별 실전 공략',
+    category: '트레이딩',
+    badge: '🕒 타이밍',
+    badgeColor: '#ff6b6b',
+    desc: '시가 334 양봉 타법 · 종가 베팅(14:50~15:20) · 금기사항(20일선 매매 금지, 밑장 빼기 주의).',
+    connections: ['trading', 'chart_pattern']
+  },
+  'youtube': {
+    title: 'MrBeast 유튜브 전략',
+    category: '콘텐츠',
+    badge: '🎬 YouTube',
+    badgeColor: '#00ff88',
+    desc: 'Agent University 전용 크리에이터 데이터셋. 세계 최고 수준 컨설팅 프로토콜: 문제정의 → 프레임워크 → 해결책 3단계.',
+    connections: ['hub', 'video1', 'video2', 'video3', 'agent_sys', 'combat_ai']
+  },
+  'video1': {
+    title: 'Can a Window Stop a Wrecking Ball?',
+    category: '콘텐츠',
+    badge: '🎥 영상',
+    badgeColor: '#00ff88',
+    desc: '조회수 23,124,614회 | 좋아요 569,581개 | 2026-04-14 게시. 강렬한 실험형 콘텐츠 포맷.',
+    connections: ['youtube', 'combat_ai']
+  },
+  'video2': {
+    title: "Don't Eat The Spicy Yoshi Egg",
+    category: '콘텐츠',
+    badge: '🎥 영상',
+    badgeColor: '#00ff88',
+    desc: '조회수 60,378,398회 | 좋아요 1,160,164개 | 2026-04-10 게시. 챌린지형 반응 콘텐츠.',
+    connections: ['youtube']
+  },
+  'video3': {
+    title: '50 Streamers Fight for $1,000,000',
+    category: '콘텐츠',
+    badge: '🎥 영상',
+    badgeColor: '#00ff88',
+    desc: '조회수 87,487,275회 | 좋아요 2,305,643개 | 2026-04-04 게시. 역대급 대규모 경쟁 콘텐츠.',
+    connections: ['youtube', 'combat_ai']
+  },
+  'combat_ai': {
+    title: 'Combat AI 샘플팩',
+    category: '에이전트',
+    badge: '⚔️ COMBAT',
+    badgeColor: '#ff9f43',
+    desc: 'Morpheus Protocol 기반 Basic 등급 에이전트 프로토콜. 시장 검증 데이터 기반 3단계(문제→프레임→해결) 자동화 수행.',
+    connections: ['agent_sys', 'youtube', 'video1', 'video3']
+  },
+  'image_gen': {
+    title: '이미지 생성 가이드',
+    category: '이미지·영상',
+    badge: '🖼️ IMAGE',
+    badgeColor: '#ffd166',
+    desc: '피부·안구·성장·치아 등 Before/After 비교 이미지 생성 프롬프트 체계. 소셜 미디어 교육용 인포그래픽 스타일.',
+    connections: ['hub', 'ai_1in', 'video_gen', 'image_prompt']
+  },
+  'video_gen': {
+    title: '영상 직접 생성 과정',
+    category: '이미지·영상',
+    badge: '🎞️ VIDEO',
+    badgeColor: '#ffd166',
+    desc: '제이멘트 라이브 학습: Improve Image → Generate 2 → Generate 1 → Output 4단계 파이프라인. Veo-3.1 모델 사용.',
+    connections: ['image_gen', 'image_prompt']
+  },
+  'image_prompt': {
+    title: '이미지 프롬프트 구조화',
+    category: '이미지·영상',
+    badge: '📝 PROMPT',
+    badgeColor: '#ffd166',
+    desc: 'JSON 기반 이미지 생성 프롬프트 구조화: composition · subject · appearance · environment · lighting · text · style · quality 8개 필드.',
+    connections: ['image_gen', 'video_gen', 'rag_core']
+  },
+  'test_pack': {
+    title: '테스트 브레인 팩',
+    category: '시스템',
+    badge: '🧪 TEST',
+    badgeColor: '#7b61ff',
+    desc: 'RAG 주입 파이프라인 동작 검증용. 시크릿 코드 ZK-7749-MATRIX로 주입 성공 여부 확인. A.U QA Lab 발급.',
+    connections: ['hub', 'rag_core']
+  }
+};
+
+// ─── vis-network 노드/엣지 빌드 ───────────────────────────
+const COLOR = {
+  hub:          { bg: '#7b61ff', border: '#a48fff' },
+  'AI · RAG':  { bg: '#00c8ff', border: '#66dfff' },
+  '에이전트':  { bg: '#ff9f43', border: '#ffbf7a' },
+  '트레이딩':  { bg: '#ff6b6b', border: '#ff9999' },
+  '콘텐츠':    { bg: '#00ff88', border: '#66ffb3' },
+  '이미지·영상':{ bg: '#ffd166', border: '#ffe099' },
+  '시스템':    { bg: '#7b61ff', border: '#a48fff' },
+};
+
+const SIZE = { hub: 40, '핵심 허브': 40 };
+
+const nodes = [];
+const edges = [];
+const edgeSet = new Set();
+
+Object.entries(nodeData).forEach(([id, d]) => {
+  const cat = id === 'hub' ? 'hub' : d.category;
+  const colKey = cat === 'hub' ? 'hub' : d.category;
+  const col = COLOR[colKey] || { bg: '#7b61ff', border: '#a48fff' };
+  nodes.push({
+    id,
+    label: d.title.length > 16 ? d.title.slice(0, 14) + '…' : d.title,
+    size: id === 'hub' ? 40 : (d.connections.length > 4 ? 24 : 18),
+    color: { background: col.bg, border: col.border, highlight: { background: col.bg, border: '#fff' } },
+    font: { color: '#ffffff', size: id === 'hub' ? 15 : 12, face: 'Outfit', bold: id === 'hub' ? true : false },
+    borderWidth: id === 'hub' ? 3 : 2,
+    shadow: { enabled: true, color: col.bg + '88', size: id === 'hub' ? 20 : 10, x: 0, y: 0 },
+    title: d.title
+  });
+
+  d.connections.forEach(target => {
+    const key = [id, target].sort().join('--');
+    if (!edgeSet.has(key)) {
+      edgeSet.add(key);
+      edges.push({ from: id, to: target });
+    }
+  });
+});
+
+// ─── 네트워크 렌더링 ──────────────────────────────────────
+const container = document.getElementById('network-container');
+const network = new vis.Network(container, { nodes, edges }, {
+  nodes: { shape: 'dot' },
+  edges: {
+    width: 2.5,
+    color: { color: 'rgba(0, 200, 255, 0.65)', highlight: 'rgba(0, 255, 200, 1)' },
+    smooth: { type: 'continuous' },
+    arrows: { to: { enabled: false } }
+  },
+  physics: {
+    enabled: true,
+    barnesHut: {
+      gravitationalConstant: -6000,
+      centralGravity: 0.3,
+      springLength: 130,
+      springConstant: 0.04,
+      damping: 0.12
+    },
+    stabilization: { iterations: 200 }
+  },
+  interaction: {
+    hover: true,
+    tooltipDelay: 200,
+    hideEdgesOnDrag: false
+  }
+});
+
+// ─── 클릭 이벤트 ─────────────────────────────────────────
+const panel = document.getElementById('detailPanel');
+document.getElementById('closeBtn').addEventListener('click', () => panel.classList.remove('open'));
+
+network.on('click', params => {
+  if (params.nodes.length === 0) { panel.classList.remove('open'); return; }
+  const id = params.nodes[0];
+  const d = nodeData[id];
+  if (!d) return;
+
+  document.getElementById('panelTitle').textContent = d.title;
+  const badge = document.getElementById('panelBadge');
+  badge.textContent = d.badge;
+  badge.style.background = (COLOR[id === 'hub' ? 'hub' : d.category] || {}).bg + '22' || '#7b61ff22';
+  badge.style.color = (COLOR[id === 'hub' ? 'hub' : d.category] || {}).bg || '#7b61ff';
+  badge.style.border = `1px solid ${(COLOR[id === 'hub' ? 'hub' : d.category] || {}).bg || '#7b61ff'}55`;
+  document.getElementById('panelDesc').textContent = d.desc;
+
+  const connDiv = document.getElementById('panelConnections');
+  connDiv.innerHTML = d.connections.map(c => {
+    const nd = nodeData[c];
+    return nd ? `<span class="conn-tag">${nd.title.slice(0,15)}${nd.title.length>15?'…':''}</span>` : '';
+  }).join('');
+
+  panel.classList.add('open');
+});
+
+network.on('hoverNode', () => { container.style.cursor = 'pointer'; });
+network.on('blurNode', () => { container.style.cursor = 'default'; });
+</script>
 </body>
 </html>
