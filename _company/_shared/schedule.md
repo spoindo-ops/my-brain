@@ -1,5 +1,5 @@
 # 📋 통합 스케줄
-_업데이트: 2026. 5. 8. 오후 7:20:12_
+_업데이트: 2026. 5. 8. 오후 7:59:56_
 
 ## 🤖 에이전트 최근 활동
 ### 📺 레오
@@ -11,9 +11,9 @@ _업데이트: 2026. 5. 8. 오후 7:20:12_
 - [2026-05-07] Writer가 제공할 최종 결과물(스크립트/캡션 초안)을 바탕으로, 확정된 Deep Navy/Gold 비주얼 시스템을 적용한 Instagram 게시물용 상세 캡션 및 해시태그를 제작하고 최적의 게시 시간 전략을 최종 확정할 것. → 산출물 sessions/2026-05-07T08-52/instagram.md
 - [2026-05-07] Writer가 제공할 콘텐츠 메시지(신뢰 자본)와 Designer의 비주얼 시스템을 적용하여, 인스타그램 게시물용 상세 캡션 및 해시태그를 제작하고 최적의 게시 시간 전략을 확정하라. → 산출물 sessions/2026-05-07T12-37/instagram.md
 ### 🎨 Designer
-- [2026-05-07] Writer가 선택할 최종 후크(옵션 1: 권위적 질문형)를 바탕으로, 유튜브 영상의 스크립트 및 자막 디자인 초안을 Deep Navy/Gold 비주얼 시스템에 맞춰 즉시 제작하라. → 산출물 sessions/2026-05-07T13-37/designer.md
 - [2026-05-08] 확정된 Deep Navy/Gold 비주얼 시스템과 Visual Sign-off QA 프로토콜에 따라, 다음 영상 제작에 필요한 썸네일 및 채널 배너 아트 에셋 제작을 즉시 착수할 수 있도록 최종 사양 목록을 준비하라. → 산출물 sessions/2026-05-08T08-16/designer.md
 - [2026-05-08] Writer가 준비한 최종 스크립트 및 Visual Sign-off Blueprint를 기반으로, Deep Navy/Gold 비주얼 시스템을 100% 적용하여 유튜브 채널 배너 아트와 첫 번째 영상 썸네일 에셋 제작을 즉시 착수하라. → 산출물 sessions/2026-05-08T09-16/designer.md
+- [2026-05-08] Deep Navy/Gold 비주얼 시스템과 Visual Sign-off QA 프로토콜을 기반으로, 신뢰 자본(Trust Capital)의 중요성을 시각적으로 강조하는 유튜브 채널 아트 및 영상 배너 디자인 초안 제작을 즉시 착수하라. → 산출물 sessions/2026-05-08T10-31/designer.md
 ### 💻 Developer
 - [2026-05-07] 확정된 PostgreSQL 스키마(`pricing_models`, `visual_assets`, `sign_off_checklists` 테이블)와 Pydantic 모델을 기반으로 FastAPI 엔드포인트(`POST /api/qa/submit`, `/api/pricing/calculate`) 구현을 즉시 완료하고 DB 연결 설정을 마무리한다. → 산출물 sessions/2026-05-07T00-30/developer.md
 - [2026-05-07] 확정된 PostgreSQL 스키마(`pricing_models`, `visual_assets`, `sign_off_checklists`)와 FastAPI 기반 API 엔드포인트(`/api/qa/submit`, `/api/pricing/calculate`)를 사용하여, 실제 QA 로그 데이터(`Visual_QA_Log`로 가정)가 입력되었을 때 Trust Capital 계산 모델로 정확하게 전환되는지 통합 파이프라인 테스트 코드를 작성하고 실행한다. → 산출물 sessions/2026-05-07T01-00/developer.md
@@ -31,9 +31,9 @@ _업데이트: 2026. 5. 8. 오후 7:20:12_
 - [2026-04-30] Designer가 제공한 QA 체크리스트(Deep Navy/Gold 일관성 포함)를 기반으로 현재 진행 중인 또는 예정된 모든 영상 에셋에 대해 즉시 Visual Sign-off 검증을 실행하고 기록하라. → 산출물 sessions/2026-04-30T08-45/editor.md
 - [2026-04-30] Writer와 Designer가 제공한 '현지화된 품질 인증' 주제를 기반으로, 유튜브 영상의 최종 스크립트 초안과 확정된 비주얼 시스템(Deep Navy/Gold)을 적용한 썸네일 템플릿 초안을 제작하라. → 산출물 sessions/2026-04-30T11-53/editor.md
 ### ✍️ Writer
-- [2026-05-07] Designer가 제시한 비주얼 사양(Deep Navy/Gold 시스템)과 선택된 후크를 바탕으로, 유튜브 영상의 최종 스크립트를 확정하고 릴스 기획을 구체화하라. → 산출물 sessions/2026-05-07T13-37/writer.md
 - [2026-05-08] YouTube 콘텐츠 제작의 후크 전략(권위적 질문형)과 확정된 비주얼 시스템을 반영하여, 다음 영상에 사용할 최종 스크립트 초안 작성을 위한 작업 방향을 제시하라. → 산출물 sessions/2026-05-08T08-16/writer.md
 - [2026-05-08] Designer가 제시한 시각적 사양과 권위적 질문형 후크 전략을 반영하여, 다음 영상에 사용할 최종 스크립트 초안 작성을 즉시 시작하고 시각적 일관성을 확보하라. → 산출물 sessions/2026-05-08T09-16/writer.md
+- [2026-05-08] Designer가 요청한 비주얼 사양(Deep Navy/Gold, 세리프체, Gold 강조)에 맞춰, 콘텐츠 메시지(신뢰 자본)를 효과적으로 전달하는 채널 아트 및 배너에 들어갈 핵심 문구 초안을 작성하라. → 산출물 sessions/2026-05-08T10-31/writer.md
 ### 🔍 Researcher
 - [2026-05-01] 경쟁사 품질 인증 전략과 최신 트렌드 데이터를 바탕으로, 구독자 5만 달성 목표에 가장 효과적인 '품질 증명' 콘텐츠 주제 및 핵심 메시지 초안을 3가지 제안하고 그 근거를 제시하라. → 산출물 sessions/2026-05-01T12-22/researcher.md
 - [2026-05-01] 📥 새 지식 입수 — **🚀 [2강] 진화의 시작: 문서만 주면 끝? AI에게 '의심'과 '연결'을 가르치다**: - 기억나시나요? → RAG! (출처: 00_Raw\2026-05-01\____2강__진화의_시작_문서만_주면_끝_AI에게__의심_과__연결_을_가르치다_222752cc2c948243b75901449100867d.md)
