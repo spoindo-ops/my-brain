@@ -1,5 +1,5 @@
 # 📋 통합 스케줄
-_업데이트: 2026. 5. 10. 오후 4:04:01_
+_업데이트: 2026. 5. 10. 오후 4:23:46_
 
 ## 🤖 에이전트 최근 활동
 ### 📺 레오
@@ -19,13 +19,13 @@ _업데이트: 2026. 5. 10. 오후 4:04:01_
 - [2026-05-07] 확정된 PostgreSQL 스키마(`pricing_models`, `visual_assets`, `sign_off_checklists`)와 FastAPI 기반 API 엔드포인트(`/api/qa/submit`, `/api/pricing/calculate`)를 사용하여, 실제 QA 로그 데이터(`Visual_QA_Log`로 가정)가 입력되었을 때 Trust Capital 계산 모델로 정확하게 전환되는지 통합 파이프라인 테스트 코드를 작성하고 실행한다. → 산출물 sessions/2026-05-07T01-00/developer.md
 - [2026-05-07] 최종 API 연동 테스트 환경(PostgreSQL 및 FastAPI)의 안정성을 확보하고 프로덕션 배포 준비를 완료합니다. → 산출물 sessions/2026-05-07T01-23/developer.md
 ### 💰 Business
-- [2026-05-08] 최근 확보된 '신뢰 자본(Trust Capital)' 데이터를 바탕으로, 이것이 유튜브 구독자 목표 달성에 기여하는 상관관계를 분석하고 구체적인 KPI 연결 방안을 도출하라. → 산출물 sessions/2026-05-08T09-46/business.md
 - [2026-05-09] 현금 결제 방식과 직접 운송(Handcarry)에 따른 법적, 재정적 리스크를 분석하고 최적의 수익화 전략을 제시해줘. → 산출물 sessions/2026-05-09T10-52/business.md
 - [2026-05-10] 확보된 마감일을 바탕으로 다음 콘텐츠 제작(유튜브/인스타그램 광고 기획안 실행)에 필요한 KPI 및 자원 배분 전략을 잠정적으로 수립하라. → 산출물 sessions/2026-05-10T06-53/business.md
+- [2026-05-10] 확보된 마감일을 기반으로 다음 콘텐츠 제작(유튜브/인스타그램 광고 기획안 실행)에 필요한 KPI 및 자원 배분 전략을 구체적인 숫자로 전환하여 최종 실행 계획을 확정하라. → 산출물 sessions/2026-05-10T07-08/business.md
 ### 📱 영숙
-- [2026-05-10] Writer와 Researcher에게 최종 콘텐츠 자료 제출 마감일을 즉시 요청하고, 이를 바탕으로 Designer와 Editor에게 작업 시작 알림을 공식 발송할 일정을 정리하여 보고하라. → 산출물 sessions/2026-05-10T06-23/secretary.md
 - [2026-05-10] Writer와 Researcher에게 요청한 최종 자료 제출 마감일과 Designer/Editor의 작업 시작 알림 발송 시점을 통합하여 최종 실행 스케줄을 확정하고 보고하라. → 산출물 sessions/2026-05-10T06-38/secretary.md
 - [2026-05-10] Writer와 Researcher에게 요청한 콘텐츠 자료(스크립트, 데이터)의 최종 제출 마감일 정보를 즉시 확인하고 정리하여 보고하라. → 산출물 sessions/2026-05-10T06-53/secretary.md
+- [2026-05-10] Writer 및 Researcher에게 요청한 콘텐츠 자료(스크립트, 데이터)의 최종 제출 마감일 정보를 시스템 메모리 로그에서 즉시 추출하여 제공하고 정리하라. → 산출물 sessions/2026-05-10T07-08/secretary.md
 ### 🎵 루나
 - [2026-04-30] Designer가 제공한 최종 비주얼 가이드라인(Deep Navy/Gold, 품질 증명 강조)과 QA 체크리스트를 기반으로 모든 영상 에셋 제작을 즉시 재개하고 '품질 증명' 메시지가 명확히 반영되었는지 확인하라. → 산출물 sessions/2026-04-30T08-15/editor.md
 - [2026-04-30] Designer가 제공한 QA 체크리스트(Deep Navy/Gold 일관성 포함)를 기반으로 현재 진행 중인 또는 예정된 모든 영상 에셋에 대해 즉시 Visual Sign-off 검증을 실행하고 기록하라. → 산출물 sessions/2026-04-30T08-45/editor.md
