@@ -14,5 +14,18 @@
   },
   "business": {
     "activatedAt": "2026-05-10T03:42:18.768Z"
-  }
+  },
+  "secretary": {
+    "activatedAt": "2026-05-10T10:25:49.566Z"
+  },
+  "youtube": {
+    "activatedAt": "2026-05-10T10:25:49.566Z"
+  },
+  "writer": {
+    "activatedAt": "2026-05-10T10:25:49.566Z"
+  },
+  "designer": {
+    "activatedAt": "2026-05-10T10:25:49.566Z"
+  },
+  "_migrated_v2": true
 }
