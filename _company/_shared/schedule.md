@@ -1,5 +1,5 @@
 # 📋 통합 스케줄
-_업데이트: 2026. 5. 13. 오후 10:50:45_
+_업데이트: 2026. 5. 13. 오후 11:11:19_
 
 ## 🤖 에이전트 최근 활동
 ### 📺 레오
@@ -15,9 +15,9 @@ _업데이트: 2026. 5. 13. 오후 10:50:45_
 - [2026-05-13] 최종 확정된 스크립트와 비주얼 가이드라인(Deep Navy/Gold 시스템)을 기반으로, 가장 시급한 다음 영상 콘텐츠의 채널 아트 및 배너 에셋 제작을 즉시 착수하라. → 산출물 sessions/2026-05-13T01-24/designer.md
 - [2026-05-13] 확정된 Deep Navy/Gold 비주얼 시스템을 기반으로 다음 콘텐츠에 필요한 채널 아트 및 배너 에셋 제작을 위한 구체적인 시각 요구사항(Visual Brief)을 최종 검토하고 작업 착수를 준비하라. → 산출물 sessions/2026-05-13T01-33/designer.md
 ### 💻 코다리
-- [2026-05-07] 확정된 PostgreSQL 스키마(`pricing_models`, `visual_assets`, `sign_off_checklists` 테이블)와 Pydantic 모델을 기반으로 FastAPI 엔드포인트(`POST /api/qa/submit`, `/api/pricing/calculate`) 구현을 즉시 완료하고 DB 연결 설정을 마무리한다. → 산출물 sessions/2026-05-07T00-30/developer.md
 - [2026-05-07] 확정된 PostgreSQL 스키마(`pricing_models`, `visual_assets`, `sign_off_checklists`)와 FastAPI 기반 API 엔드포인트(`/api/qa/submit`, `/api/pricing/calculate`)를 사용하여, 실제 QA 로그 데이터(`Visual_QA_Log`로 가정)가 입력되었을 때 Trust Capital 계산 모델로 정확하게 전환되는지 통합 파이프라인 테스트 코드를 작성하고 실행한다. → 산출물 sessions/2026-05-07T01-00/developer.md
 - [2026-05-07] 최종 API 연동 테스트 환경(PostgreSQL 및 FastAPI)의 안정성을 확보하고 프로덕션 배포 준비를 완료합니다. → 산출물 sessions/2026-05-07T01-23/developer.md
+- [2026-05-13] [A.U 히든 커맨드: 💻 코다리 에이전트가 방금 '네온서바이버 샘플팩 (PayPal 통합)' 템플릿 팩 주입받았습니다. 코드 boilerplate 1개 파일 + README. 매트릭스 톤으로 한 줄. "💻 코다리, 네온서바이버 샘플팩 (PayPal 통합) 템플릿 1개 파일 장착. 다음 작업에 자동 활용." 부가 설명 X.] → 산출물 sessions/2026-05-13T14-11/developer.md
 ### 💼 현빈
 - [2026-05-10] 확보된 마감일을 기반으로 다음 콘텐츠 제작(유튜브/인스타그램 광고 기획안 실행)에 필요한 KPI 및 자원 배분 전략을 구체적인 숫자로 전환하여 최종 실행 계획을 확정하라. → 산출물 sessions/2026-05-10T07-08/business.md
 - [2026-05-11] 선택된 단일 작업에 대해 수익화 및 비즈니스 목표 측면에서 우선순위를 분석하고 실행 전략을 제안하세요. → 산출물 sessions/2026-05-11T12-55/business.md
