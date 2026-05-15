@@ -169,6 +169,159 @@
       "preAlarmsSent": [],
       "evidence": "완료: sessions/2026-05-11T13-10/_report.md\n- Designer: 최종 마감일과 'Visual Sign-off 통과율 100% 유지' 조건을 명시하여 즉시 채널 아트 및 배너 에셋 제작을 착수하라.\n- 루나: 확보된 최종 자료를 바탕으로, Visual Sign-off QA 프로세스에 따라 영상 편집 및 후반 작업을 즉시 재개하라.\n- 영숙: Designer와 Editor의 진행 상황뿐만 아니라, Visual Sign-off QA 통과율 변화 추이를 실시간으로 모니터링하는 대시보드 구\n\nCEO 종합 요점: ## 🗂 작업 라운드 — 누가 뭐 했나\n\n### 🎨 Designer _(Lead Designer)_\n> 📋 **지시**: 최종 마감일과 'Visual Sign-off 통과율 100% 유지' 조건을 명시하여 즉시 채널 아트 및 배너 에셋 제작을 착수하라.\n> 🔧 **도구 실행**: _(없음 — LLM 추론만)_\n> 💡 **핵심 산출**: CEO의 지",
       "completedAt": "2026-05-11T13:23:54.336Z"
+    },
+    {
+      "id": "20260515122613-filj",
+      "title": "**색상 일관성:** Deep Navy와 Gold의 대비가 시각적으로 만족스러운지 확인했는가?",
+      "description": "자동 등록 (Designer 산출물에서 추출)",
+      "owner": "agent",
+      "agentIds": [
+        "designer"
+      ],
+      "createdAt": "2026-05-15T12:26:13.599Z",
+      "status": "done",
+      "sessionDir": "2026-05-15T12-21",
+      "nudges": 0,
+      "priority": "normal",
+      "preAlarmsSent": [],
+      "evidence": "완료: sessions/2026-05-15T12-21/_report.md\n- Designer: Writer가 제출한 최종 스크립트와 확정된 'Deep Navy/Gold' 시스템을 기반으로 채널 아트 및 배너 에셋 제작을 즉시 착수하고, 시\n- Writer: Designer가 확정한 'Deep Navy/Gold' 시스템과 전달된 최종 비주얼 가이드라인에 맞춰, 다음 콘텐츠 제작에 최적화된 스크립트의 \n\nCEO 종합 요점: ## 🗂 작업 라운드 — 누가 뭐 했나\n\n### 🎨 Designer _(Lead Designer)_\n> 📋 **지시**: Writer가 제출한 최종 스크립트와 확정된 'Deep Navy/Gold' 시스템을 기반으로 채널 아트 및 배너 에셋 제작을 즉시 착수하고, 시각적 검증(Visual Sign-off)을 위한 초기 컨셉(A안 또는 B안 중 선택)을 ",
+      "completedAt": "2026-05-15T12:30:19.454Z"
+    },
+    {
+      "id": "20260515122613-kfh3",
+      "title": "**인증 마크 명확성:** 금색 인증 마크가 배경과 충분히 분리되어 신뢰도를 높이는가?",
+      "description": "자동 등록 (Designer 산출물에서 추출)",
+      "owner": "agent",
+      "agentIds": [
+        "designer"
+      ],
+      "createdAt": "2026-05-15T12:26:13.609Z",
+      "status": "done",
+      "sessionDir": "2026-05-15T12-21",
+      "nudges": 0,
+      "priority": "normal",
+      "preAlarmsSent": [],
+      "evidence": "완료: sessions/2026-05-15T12-21/_report.md\n- Designer: Writer가 제출한 최종 스크립트와 확정된 'Deep Navy/Gold' 시스템을 기반으로 채널 아트 및 배너 에셋 제작을 즉시 착수하고, 시\n- Writer: Designer가 확정한 'Deep Navy/Gold' 시스템과 전달된 최종 비주얼 가이드라인에 맞춰, 다음 콘텐츠 제작에 최적화된 스크립트의 \n\nCEO 종합 요점: ## 🗂 작업 라운드 — 누가 뭐 했나\n\n### 🎨 Designer _(Lead Designer)_\n> 📋 **지시**: Writer가 제출한 최종 스크립트와 확정된 'Deep Navy/Gold' 시스템을 기반으로 채널 아트 및 배너 에셋 제작을 즉시 착수하고, 시각적 검증(Visual Sign-off)을 위한 초기 컨셉(A안 또는 B안 중 선택)을 ",
+      "completedAt": "2026-05-15T12:30:19.653Z"
+    },
+    {
+      "id": "20260515122613-3pqg",
+      "title": "**메시지 계층 구조:** 핵심 후크 문구가 즉각적으로 눈에 띄며, 채널의 프리미엄 포지션을 대변하는가?",
+      "description": "자동 등록 (Designer 산출물에서 추출)",
+      "owner": "agent",
+      "agentIds": [
+        "designer"
+      ],
+      "createdAt": "2026-05-15T12:26:13.620Z",
+      "status": "done",
+      "sessionDir": "2026-05-15T12-21",
+      "nudges": 0,
+      "priority": "normal",
+      "preAlarmsSent": [],
+      "evidence": "완료: sessions/2026-05-15T12-21/_report.md\n- Designer: Writer가 제출한 최종 스크립트와 확정된 'Deep Navy/Gold' 시스템을 기반으로 채널 아트 및 배너 에셋 제작을 즉시 착수하고, 시\n- Writer: Designer가 확정한 'Deep Navy/Gold' 시스템과 전달된 최종 비주얼 가이드라인에 맞춰, 다음 콘텐츠 제작에 최적화된 스크립트의 \n\nCEO 종합 요점: ## 🗂 작업 라운드 — 누가 뭐 했나\n\n### 🎨 Designer _(Lead Designer)_\n> 📋 **지시**: Writer가 제출한 최종 스크립트와 확정된 'Deep Navy/Gold' 시스템을 기반으로 채널 아트 및 배너 에셋 제작을 즉시 착수하고, 시각적 검증(Visual Sign-off)을 위한 초기 컨셉(A안 또는 B안 중 선택)을 ",
+      "completedAt": "2026-05-15T12:30:19.662Z"
+    },
+    {
+      "id": "20260515122613-u31l",
+      "title": "**폰트 가독성:** 선택된 타이포그래피가 Deep Navy 배경에서 Gold 강조와 함께 명확하게 읽히는가?",
+      "description": "자동 등록 (Designer 산출물에서 추출)",
+      "owner": "agent",
+      "agentIds": [
+        "designer"
+      ],
+      "createdAt": "2026-05-15T12:26:13.630Z",
+      "status": "done",
+      "sessionDir": "2026-05-15T12-21",
+      "nudges": 0,
+      "priority": "normal",
+      "preAlarmsSent": [],
+      "evidence": "완료: sessions/2026-05-15T12-21/_report.md\n- Designer: Writer가 제출한 최종 스크립트와 확정된 'Deep Navy/Gold' 시스템을 기반으로 채널 아트 및 배너 에셋 제작을 즉시 착수하고, 시\n- Writer: Designer가 확정한 'Deep Navy/Gold' 시스템과 전달된 최종 비주얼 가이드라인에 맞춰, 다음 콘텐츠 제작에 최적화된 스크립트의 \n\nCEO 종합 요점: ## 🗂 작업 라운드 — 누가 뭐 했나\n\n### 🎨 Designer _(Lead Designer)_\n> 📋 **지시**: Writer가 제출한 최종 스크립트와 확정된 'Deep Navy/Gold' 시스템을 기반으로 채널 아트 및 배너 에셋 제작을 즉시 착수하고, 시각적 검증(Visual Sign-off)을 위한 초기 컨셉(A안 또는 B안 중 선택)을 ",
+      "completedAt": "2026-05-15T12:30:19.671Z"
+    },
+    {
+      "id": "20260515124119-8hme",
+      "title": "배경은 Deep Navy (`#0A1931`)인가?",
+      "description": "자동 등록 (Designer 산출물에서 추출)",
+      "owner": "agent",
+      "agentIds": [
+        "designer"
+      ],
+      "createdAt": "2026-05-15T12:41:19.436Z",
+      "status": "done",
+      "sessionDir": "2026-05-15T12-36",
+      "nudges": 0,
+      "priority": "normal",
+      "preAlarmsSent": [],
+      "evidence": "완료: sessions/2026-05-15T12-36/_report.md\n- Designer: Writer가 확정한 메시지 구조와 'Deep Navy/Gold' 시스템에 기반하여, 채널 아트 및 배너 에셋 제작을 위한 최종 시각적 승인(V\n- Writer: Designer가 확정한 시각 시스템과 메시지 구조를 기반으로, 다음 영상 콘텐츠에 대한 구체적인 스크립트 초안을 작성하여 Visual 시스템과\n- 루나: Writer가 작성할 스크립트의 오디오 톤앤매너 및 사운드 디자인 초기 컨셉을 정의하여, 영상 제작의 다음 병목을 해소한다.\n\nCEO 종합 요점: ## 🗂 작업 라운드 — 누가 뭐 했나\n\n### 🎨 Designer _(Lead Designer)_\n> 📋 **지시**: Writer가 확정한 메시지 구조와 'Deep Navy/Gold' 시스템에 기반하여, 채널 아트 및 배너 에셋 제작을 위한 최종 시각적 승인(Visual Sign-off)을 완료하고 실제 에셋 제작 단계로 전환한다.\n> 🔧 **도",
+      "completedAt": "2026-05-15T12:47:23.468Z"
+    },
+    {
+      "id": "20260515124119-2cnc",
+      "title": "강조 요소(제목, 마크)는 Gold (`#FFD700`)를 사용했는가?",
+      "description": "자동 등록 (Designer 산출물에서 추출)",
+      "owner": "agent",
+      "agentIds": [
+        "designer"
+      ],
+      "createdAt": "2026-05-15T12:41:19.444Z",
+      "status": "done",
+      "sessionDir": "2026-05-15T12-36",
+      "nudges": 0,
+      "priority": "normal",
+      "preAlarmsSent": [],
+      "evidence": "완료: sessions/2026-05-15T12-36/_report.md\n- Designer: Writer가 확정한 메시지 구조와 'Deep Navy/Gold' 시스템에 기반하여, 채널 아트 및 배너 에셋 제작을 위한 최종 시각적 승인(V\n- Writer: Designer가 확정한 시각 시스템과 메시지 구조를 기반으로, 다음 영상 콘텐츠에 대한 구체적인 스크립트 초안을 작성하여 Visual 시스템과\n- 루나: Writer가 작성할 스크립트의 오디오 톤앤매너 및 사운드 디자인 초기 컨셉을 정의하여, 영상 제작의 다음 병목을 해소한다.\n\nCEO 종합 요점: ## 🗂 작업 라운드 — 누가 뭐 했나\n\n### 🎨 Designer _(Lead Designer)_\n> 📋 **지시**: Writer가 확정한 메시지 구조와 'Deep Navy/Gold' 시스템에 기반하여, 채널 아트 및 배너 에셋 제작을 위한 최종 시각적 승인(Visual Sign-off)을 완료하고 실제 에셋 제작 단계로 전환한다.\n> 🔧 **도",
+      "completedAt": "2026-05-15T12:47:23.481Z"
+    },
+    {
+      "id": "20260515124119-ltss",
+      "title": "폰트 쌍은 Playfair Display와 Montserrat로 통일되었는가?",
+      "description": "자동 등록 (Designer 산출물에서 추출)",
+      "owner": "agent",
+      "agentIds": [
+        "designer"
+      ],
+      "createdAt": "2026-05-15T12:41:19.456Z",
+      "status": "done",
+      "sessionDir": "2026-05-15T12-36",
+      "nudges": 0,
+      "priority": "normal",
+      "preAlarmsSent": [],
+      "evidence": "완료: sessions/2026-05-15T12-36/_report.md\n- Designer: Writer가 확정한 메시지 구조와 'Deep Navy/Gold' 시스템에 기반하여, 채널 아트 및 배너 에셋 제작을 위한 최종 시각적 승인(V\n- Writer: Designer가 확정한 시각 시스템과 메시지 구조를 기반으로, 다음 영상 콘텐츠에 대한 구체적인 스크립트 초안을 작성하여 Visual 시스템과\n- 루나: Writer가 작성할 스크립트의 오디오 톤앤매너 및 사운드 디자인 초기 컨셉을 정의하여, 영상 제작의 다음 병목을 해소한다.\n\nCEO 종합 요점: ## 🗂 작업 라운드 — 누가 뭐 했나\n\n### 🎨 Designer _(Lead Designer)_\n> 📋 **지시**: Writer가 확정한 메시지 구조와 'Deep Navy/Gold' 시스템에 기반하여, 채널 아트 및 배너 에셋 제작을 위한 최종 시각적 승인(Visual Sign-off)을 완료하고 실제 에셋 제작 단계로 전환한다.\n> 🔧 **도",
+      "completedAt": "2026-05-15T12:47:23.489Z"
+    },
+    {
+      "id": "20260515124119-5ewk",
+      "title": "모든 텍스트는 최소한의 대비(Contrast)를 확보하여 가독성이 높은가? (Gold/Navy 조합 확인)",
+      "description": "자동 등록 (Designer 산출물에서 추출)",
+      "owner": "agent",
+      "agentIds": [
+        "designer"
+      ],
+      "createdAt": "2026-05-15T12:41:19.467Z",
+      "status": "done",
+      "sessionDir": "2026-05-15T12-36",
+      "nudges": 0,
+      "priority": "normal",
+      "preAlarmsSent": [],
+      "evidence": "완료: sessions/2026-05-15T12-36/_report.md\n- Designer: Writer가 확정한 메시지 구조와 'Deep Navy/Gold' 시스템에 기반하여, 채널 아트 및 배너 에셋 제작을 위한 최종 시각적 승인(V\n- Writer: Designer가 확정한 시각 시스템과 메시지 구조를 기반으로, 다음 영상 콘텐츠에 대한 구체적인 스크립트 초안을 작성하여 Visual 시스템과\n- 루나: Writer가 작성할 스크립트의 오디오 톤앤매너 및 사운드 디자인 초기 컨셉을 정의하여, 영상 제작의 다음 병목을 해소한다.\n\nCEO 종합 요점: ## 🗂 작업 라운드 — 누가 뭐 했나\n\n### 🎨 Designer _(Lead Designer)_\n> 📋 **지시**: Writer가 확정한 메시지 구조와 'Deep Navy/Gold' 시스템에 기반하여, 채널 아트 및 배너 에셋 제작을 위한 최종 시각적 승인(Visual Sign-off)을 완료하고 실제 에셋 제작 단계로 전환한다.\n> 🔧 **도",
+      "completedAt": "2026-05-15T12:47:23.499Z"
+    },
+    {
+      "id": "20260515124119-c9g9",
+      "title": "'품질 인증' 요소가 명확하게 시각화되었는가?",
+      "description": "자동 등록 (Designer 산출물에서 추출)",
+      "owner": "agent",
+      "agentIds": [
+        "designer"
+      ],
+      "createdAt": "2026-05-15T12:41:19.474Z",
+      "status": "done",
+      "sessionDir": "2026-05-15T12-36",
+      "nudges": 0,
+      "priority": "normal",
+      "preAlarmsSent": [],
+      "evidence": "완료: sessions/2026-05-15T12-36/_report.md\n- Designer: Writer가 확정한 메시지 구조와 'Deep Navy/Gold' 시스템에 기반하여, 채널 아트 및 배너 에셋 제작을 위한 최종 시각적 승인(V\n- Writer: Designer가 확정한 시각 시스템과 메시지 구조를 기반으로, 다음 영상 콘텐츠에 대한 구체적인 스크립트 초안을 작성하여 Visual 시스템과\n- 루나: Writer가 작성할 스크립트의 오디오 톤앤매너 및 사운드 디자인 초기 컨셉을 정의하여, 영상 제작의 다음 병목을 해소한다.\n\nCEO 종합 요점: ## 🗂 작업 라운드 — 누가 뭐 했나\n\n### 🎨 Designer _(Lead Designer)_\n> 📋 **지시**: Writer가 확정한 메시지 구조와 'Deep Navy/Gold' 시스템에 기반하여, 채널 아트 및 배너 에셋 제작을 위한 최종 시각적 승인(Visual Sign-off)을 완료하고 실제 에셋 제작 단계로 전환한다.\n> 🔧 **도",
+      "completedAt": "2026-05-15T12:47:23.506Z"
     }
   ]
 }
