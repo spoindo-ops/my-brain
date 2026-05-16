@@ -553,3 +553,8 @@ _세션: 2026-05-15T14-29_
 - PayPal 매출 분석을 위해 Client ID와 Secret을 입력해야 한다.
 - 매출 데이터 확보를 위해 PayPal Developer Dashboard에서 인증 정보를 복사해야 한다.
 _세션: 2026-05-16T10-24_
+
+## [2026-05-16] 현빈아, 이번 달 PayPal 매출 실데이터 가져와서 분석하고 다음 액션 1개 추천해줘.
+- PayPal 매출 분석을 위해 Client ID와 Secret을 입력해야 한다.
+- Client ID와 Secret은 PayPal Developer Dashboard에서 복사하여 사용한다.
+_세션: 2026-05-16T10-24_
