@@ -560,6 +560,91 @@
       "preAlarmsSent": [],
       "evidence": "완료: sessions/2026-05-27T03-49/_report.md\n- 코다리: 자동화 모듈(`pack_apply.py`)의 End-to-End 테스트 안정성을 최종적으로 확보하고 실패 로그 분석을 기반으로 수정 계획을 즉시\n- 레오: 확정된 실행 계획에 따라, 기술적 안정성이 확보되는 즉시 영상 편집 및 배포 단계별 실행 로드맵을 구체화하고 첫 번째 콘텐츠 제작 흐름(스크립트\n- Designer: 최종 안정화된 파이프라인을 기반으로, 'Deep Navy/Gold' 시스템 준수 마스터 체크리스트를 활용하여 다음 콘텐츠 제작에 필요한 시각적 \n\nCEO 종합 요점: ## 🗂 작업 라운드 — 누가 뭐 했나\n\n### 💻 코다리 _(시니어 풀스택 엔지니어)_\n> 📋 **지시**: 자동화 모듈(`pack_apply.py`)의 End-to-End 테스트 안정성을 최종적으로 확보하고 실패 로그 분석을 기반으로 수정 계획을 즉시 실행하여 콘텐츠 제작 파이프라인의 기술적 안정성을 보장하라.\n> 🔧 **도구 실행**: _(없음",
       "completedAt": "2026-05-27T04:37:03.900Z"
+    },
+    {
+      "id": "20260529091504-19lm",
+      "title": "Deep Navy/Gold 색상 코드의 정확한 적용 여부.",
+      "description": "자동 등록 (Designer 산출물에서 추출)",
+      "owner": "agent",
+      "agentIds": [
+        "designer"
+      ],
+      "createdAt": "2026-05-29T09:15:04.068Z",
+      "status": "done",
+      "sessionDir": "2026-05-29T08-59",
+      "nudges": 0,
+      "priority": "normal",
+      "preAlarmsSent": [],
+      "evidence": "완료: sessions/2026-05-29T08-59/_report.md\n- Designer: 확정된 'Deep Navy/Gold' 및 'Global Trust Series' 가이드라인을 기반으로, 유튜브 영상의 최종 편집본 구성안(레오 \n- 코다리: 영상 파이프라인의 안정성 모니터링 시스템을 재검토하여, Designer가 제시한 시각적 가이드라인(Deep Navy/Gold, Global Tr\n\nCEO 종합 요점: ## 🗂 작업 라운드 — 누가 뭐 했나\n\n### 🎨 Designer _(Lead Designer)_\n> 📋 **지시**: 확정된 'Deep Navy/Gold' 및 'Global Trust Series' 가이드라인을 기반으로, 유튜브 영상의 최종 편집본 구성안(레오 산출물)에 맞춰 모든 시각 자료(썸네일 초안 및 인트로 요소)를 FIGMA에 통합하고 마",
+      "completedAt": "2026-05-29T09:32:19.941Z"
+    },
+    {
+      "id": "20260529091504-szd7",
+      "title": "타이포그래피 계층 구조(Serif vs Sans)가 명확히 구분되었는가?",
+      "description": "자동 등록 (Designer 산출물에서 추출)",
+      "owner": "agent",
+      "agentIds": [
+        "designer"
+      ],
+      "createdAt": "2026-05-29T09:15:04.078Z",
+      "status": "done",
+      "sessionDir": "2026-05-29T08-59",
+      "nudges": 0,
+      "priority": "normal",
+      "preAlarmsSent": [],
+      "evidence": "완료: sessions/2026-05-29T08-59/_report.md\n- Designer: 확정된 'Deep Navy/Gold' 및 'Global Trust Series' 가이드라인을 기반으로, 유튜브 영상의 최종 편집본 구성안(레오 \n- 코다리: 영상 파이프라인의 안정성 모니터링 시스템을 재검토하여, Designer가 제시한 시각적 가이드라인(Deep Navy/Gold, Global Tr\n\nCEO 종합 요점: ## 🗂 작업 라운드 — 누가 뭐 했나\n\n### 🎨 Designer _(Lead Designer)_\n> 📋 **지시**: 확정된 'Deep Navy/Gold' 및 'Global Trust Series' 가이드라인을 기반으로, 유튜브 영상의 최종 편집본 구성안(레오 산출물)에 맞춰 모든 시각 자료(썸네일 초안 및 인트로 요소)를 FIGMA에 통합하고 마",
+      "completedAt": "2026-05-29T09:32:19.950Z"
+    },
+    {
+      "id": "20260529091504-wnc4",
+      "title": "Gold 요소가 단순한 강조가 아닌 '품질 인증'의 느낌을 전달하는가? (Gold/Navy 대비 확인).",
+      "description": "자동 등록 (Designer 산출물에서 추출)",
+      "owner": "agent",
+      "agentIds": [
+        "designer"
+      ],
+      "createdAt": "2026-05-29T09:15:04.091Z",
+      "status": "done",
+      "sessionDir": "2026-05-29T08-59",
+      "nudges": 0,
+      "priority": "normal",
+      "preAlarmsSent": [],
+      "evidence": "완료: sessions/2026-05-29T08-59/_report.md\n- Designer: 확정된 'Deep Navy/Gold' 및 'Global Trust Series' 가이드라인을 기반으로, 유튜브 영상의 최종 편집본 구성안(레오 \n- 코다리: 영상 파이프라인의 안정성 모니터링 시스템을 재검토하여, Designer가 제시한 시각적 가이드라인(Deep Navy/Gold, Global Tr\n\nCEO 종합 요점: ## 🗂 작업 라운드 — 누가 뭐 했나\n\n### 🎨 Designer _(Lead Designer)_\n> 📋 **지시**: 확정된 'Deep Navy/Gold' 및 'Global Trust Series' 가이드라인을 기반으로, 유튜브 영상의 최종 편집본 구성안(레오 산출물)에 맞춰 모든 시각 자료(썸네일 초안 및 인트로 요소)를 FIGMA에 통합하고 마",
+      "completedAt": "2026-05-29T09:32:19.958Z"
+    },
+    {
+      "id": "20260529091504-musk",
+      "title": "'Global Trust Series' 마크가 일관성 있게 배치되었는가?",
+      "description": "자동 등록 (Designer 산출물에서 추출)",
+      "owner": "agent",
+      "agentIds": [
+        "designer"
+      ],
+      "createdAt": "2026-05-29T09:15:04.099Z",
+      "status": "done",
+      "sessionDir": "2026-05-29T08-59",
+      "nudges": 0,
+      "priority": "normal",
+      "preAlarmsSent": [],
+      "evidence": "완료: sessions/2026-05-29T08-59/_report.md\n- Designer: 확정된 'Deep Navy/Gold' 및 'Global Trust Series' 가이드라인을 기반으로, 유튜브 영상의 최종 편집본 구성안(레오 \n- 코다리: 영상 파이프라인의 안정성 모니터링 시스템을 재검토하여, Designer가 제시한 시각적 가이드라인(Deep Navy/Gold, Global Tr\n\nCEO 종합 요점: ## 🗂 작업 라운드 — 누가 뭐 했나\n\n### 🎨 Designer _(Lead Designer)_\n> 📋 **지시**: 확정된 'Deep Navy/Gold' 및 'Global Trust Series' 가이드라인을 기반으로, 유튜브 영상의 최종 편집본 구성안(레오 산출물)에 맞춰 모든 시각 자료(썸네일 초안 및 인트로 요소)를 FIGMA에 통합하고 마",
+      "completedAt": "2026-05-29T09:32:19.968Z"
+    },
+    {
+      "id": "20260529091504-p2u0",
+      "title": "모든 시각 자료에서 신뢰 자본(Trust Capital)이 시각적으로 증명되는가?",
+      "description": "자동 등록 (Designer 산출물에서 추출)",
+      "owner": "agent",
+      "agentIds": [
+        "designer"
+      ],
+      "createdAt": "2026-05-29T09:15:04.110Z",
+      "status": "done",
+      "sessionDir": "2026-05-29T08-59",
+      "nudges": 0,
+      "priority": "normal",
+      "preAlarmsSent": [],
+      "evidence": "완료: sessions/2026-05-29T08-59/_report.md\n- Designer: 확정된 'Deep Navy/Gold' 및 'Global Trust Series' 가이드라인을 기반으로, 유튜브 영상의 최종 편집본 구성안(레오 \n- 코다리: 영상 파이프라인의 안정성 모니터링 시스템을 재검토하여, Designer가 제시한 시각적 가이드라인(Deep Navy/Gold, Global Tr\n\nCEO 종합 요점: ## 🗂 작업 라운드 — 누가 뭐 했나\n\n### 🎨 Designer _(Lead Designer)_\n> 📋 **지시**: 확정된 'Deep Navy/Gold' 및 'Global Trust Series' 가이드라인을 기반으로, 유튜브 영상의 최종 편집본 구성안(레오 산출물)에 맞춰 모든 시각 자료(썸네일 초안 및 인트로 요소)를 FIGMA에 통합하고 마",
+      "completedAt": "2026-05-29T09:32:19.975Z"
     }
   ]
 }
