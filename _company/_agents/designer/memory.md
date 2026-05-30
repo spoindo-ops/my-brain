@@ -149,3 +149,8 @@ _Designer 에이전트만 읽고 쓰는 개인 노트. 학습·교훈·자주 �
 - [2026-05-30] 영상 인트로 편집 작업이 시작되는 즉시, 'Deep Navy/Gold' 및 'Global Trust Series' 가이드라인 준수 여부를 실시간으로 감독하고 시각적 일관성 오류가 발생하지 않도록 보증한다. → 산출물 sessions/2026-05-30T07-40/designer.md
 - [2026-05-30] 개발자(코다리)가 제공하는 QA 로그를 지속적으로 감독하며, 'Deep Navy/Gold' 및 'Global Trust Series' 가이드라인 준수 여부를 실시간으로 보증하는 모니터링 체계를 유지한다. → 산출물 sessions/2026-05-30T08-10/designer.md
 - [2026-05-30] 레오가 제공한 실행 브리프와 자산 리스트를 기반으로 영상 인트로 편집 작업을 즉시 착수하고, 'Deep Navy/Gold' 및 'Global Trust Series' 가이드라인을 100% 준수하여 작업 시작 후 3시간 내에 중간 보고서를 제출할 것. → 산출물 sessions/2026-05-30T08-55/designer.md
+- [2026-05-30] 레오의 영상 인트로 편집 작업에 대해 'Deep Navy/Gold' 및 'Global Trust Series' 가이드라인 준수 여부를 실시간으로 감독하고 시각적 일관성을 보증하라. → 산출물 sessions/2026-05-30T09-40/designer.md
+- [2026-05-30] Youtube 에이전트가 확정한 최종 실행 브리프(Deep Navy/Gold 및 Global Trust Series 가이드라인 준수)를 기반으로 영상 인트로 편집 작업을 즉시 착수하고, 작업 진행 상황에 대한 중간 보고 계획을 수립하라. → 산출물 sessions/2026-05-30T10-40/designer.md
+- [2026-05-30] 레오가 준비한 최종 실행 브리프('Deep Navy/Gold 및 Global Trust Series 가이드라인 100% 준수')를 기반으로 영상 인트로 편집 작업을 즉시 착수하고, 작업 중간 보고 계획에 따른 진행 상황을 Designer에게 보고할 준비를 하라. → 산출물 sessions/2026-05-30T11-25/designer.md
+- [2026-05-30] 최종 실행 브리프('Deep Navy/Gold 및 Global Trust Series 가이드라인 100% 준수')를 기반으로 영상 인트로 편집 작업을 즉시 착수하고, 작업 중간 보고 계획에 따른 진행 상황을 준비하라. → 산출물 sessions/2026-05-30T11-55/designer.md
+- [2026-05-30] Writer가 제시한 카피와 Researcher의 트렌드 리서치 결과를 통합하여, 'Deep Navy/Gold' 색상 팔레트를 적용한 유튜브 썸네일 및 인스타그램 광고 배너에 대한 시각적 콘셉트 초안을 디자인하라. → 산출물 sessions/2026-05-30T12-40/designer.md
