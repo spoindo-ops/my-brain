@@ -154,3 +154,10 @@ _Designer 에이전트만 읽고 쓰는 개인 노트. 학습·교훈·자주 �
 - [2026-05-30] 레오가 준비한 최종 실행 브리프('Deep Navy/Gold 및 Global Trust Series 가이드라인 100% 준수')를 기반으로 영상 인트로 편집 작업을 즉시 착수하고, 작업 중간 보고 계획에 따른 진행 상황을 Designer에게 보고할 준비를 하라. → 산출물 sessions/2026-05-30T11-25/designer.md
 - [2026-05-30] 최종 실행 브리프('Deep Navy/Gold 및 Global Trust Series 가이드라인 100% 준수')를 기반으로 영상 인트로 편집 작업을 즉시 착수하고, 작업 중간 보고 계획에 따른 진행 상황을 준비하라. → 산출물 sessions/2026-05-30T11-55/designer.md
 - [2026-05-30] Writer가 제시한 카피와 Researcher의 트렌드 리서치 결과를 통합하여, 'Deep Navy/Gold' 색상 팔레트를 적용한 유튜브 썸네일 및 인스타그램 광고 배너에 대한 시각적 콘셉트 초안을 디자인하라. → 산출물 sessions/2026-05-30T12-40/designer.md
+- [2026-05-31] Writer가 준비한 콘텐츠 콘셉트(Source, Process, Result)를 기반으로 'Deep Navy/Gold' 색상 팔레트를 엄격하게 적용하여 유튜브 썸네일 및 인스타그램 광고 배너에 대한 시각적 콘셉트 초안을 디자인하라. → 산출물 sessions/2026-05-31T01-23/designer.md
+- [2026-05-31] Writer가 완성할 콘텐츠 콘셉트를 기반으로, 'Deep Navy/Gold' 색상 팔레트를 적용하여 유튜브 썸네일 및 인스타그램 광고 배너에 대한 최종 디자인을 제작하도록 지시하라. → 산출물 sessions/2026-05-31T01-53/designer.md
+- [2026-05-31] Writer가 최종 선택한 시각적 콘셉트(3안 중 1개)를 기반으로, 'Deep Navy/Gold' 가이드라인을 엄격히 적용하여 유튜브 썸네일 및 인스타그램 광고 배너의 최종 디자인을 제작하도록 지시하고 실행하라. → 산출물 sessions/2026-05-31T02-23/designer.md
+- [2026-05-31] Writer가 제시할 최종 텍스트 콘셉트(Source/Process/Result)를 기반으로, 'Deep Navy/Gold' 색상 팔레트를 엄격하게 적용하여 유튜브 썸네일 및 인스타그램 광고 배너에 대한 최종 디자인을 제작하라. → 산출물 sessions/2026-05-31T03-23/designer.md
+- [2026-05-31] Writer가 선택한 최종 유튜브 썸네일 콘셉트(A, B, C 중 하나)를 확정하고, 'Deep Navy/Gold' 가이드라인을 100% 적용하여 해당 디자인을 즉시 제작하라. → 산출물 sessions/2026-05-31T04-08/designer.md
+- [2026-05-31] Writer가 선택한 유튜브 썸네일 콘셉트(A, B, C 중 하나)와 핵심 메시지(Source/Process/Result)를 즉시 제공하여 디자인 작업을 시작하도록 함. → 산출물 sessions/2026-05-31T04-38/designer.md
+- [2026-05-31] Writer로부터 최종 선택 사항과 Source-Process-Result 정보를 즉시 수령하여 'Deep Navy/Gold' 가이드라인을 적용한 고해상도 에셋 제작을 시작하라. → 산출물 sessions/2026-05-31T05-08/designer.md
