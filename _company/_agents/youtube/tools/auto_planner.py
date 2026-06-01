@@ -3,6 +3,10 @@
 duration (e.g. overnight). Reads its config from auto_planner.json."""
 import os, json, time, datetime, subprocess, sys
 
+# 윈도우 cp949 인코딩 에러(이모지 출력) 방지
+if sys.stdout.encoding.lower() != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 CONFIG_PATH = os.path.join(HERE, "auto_planner.json")
 SNIPER_PATH = os.path.join(HERE, "trend_sniper.py")
