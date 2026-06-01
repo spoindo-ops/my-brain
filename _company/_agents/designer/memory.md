@@ -161,3 +161,4 @@ _Designer 에이전트만 읽고 쓰는 개인 노트. 학습·교훈·자주 �
 - [2026-05-31] Writer가 선택한 최종 유튜브 썸네일 콘셉트(A, B, C 중 하나)를 확정하고, 'Deep Navy/Gold' 가이드라인을 100% 적용하여 해당 디자인을 즉시 제작하라. → 산출물 sessions/2026-05-31T04-08/designer.md
 - [2026-05-31] Writer가 선택한 유튜브 썸네일 콘셉트(A, B, C 중 하나)와 핵심 메시지(Source/Process/Result)를 즉시 제공하여 디자인 작업을 시작하도록 함. → 산출물 sessions/2026-05-31T04-38/designer.md
 - [2026-05-31] Writer로부터 최종 선택 사항과 Source-Process-Result 정보를 즉시 수령하여 'Deep Navy/Gold' 가이드라인을 적용한 고해상도 에셋 제작을 시작하라. → 산출물 sessions/2026-05-31T05-08/designer.md
+- [2026-06-01] Writer가 제공할 스크립트와 business가 확정한 Premium 포지셔닝을 시각적으로 구현하기 위한 'Proven Belief' 테마의 무드보드를 제작하라. Deep Navy/Gold 가이드라인을 유지하며, 전문성과 권위를 극대화하는 비주얼 콘셉트를 제시해야 한다. → 산출물 sessions/2026-06-01T14-28/designer.md
