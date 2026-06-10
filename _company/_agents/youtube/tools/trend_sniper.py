@@ -84,14 +84,24 @@ def main():
         print(f"📡 [{q}] 검색 중...")
         try:
             req = youtube.search().list(
-                part="snippet", q=q, maxResults=5, order="viewCount",
+                part="id", q=q, maxResults=5, order="viewCount",
                 publishedAfter=last_month, type="video"
             )
             res = req.execute()
-            for item in res.get('items', []):
-                title = item['snippet']['title']
-                channel = item['snippet']['channelTitle']
-                sniper_data.append(f"[{q}] 채널: {channel} | 제목: {title}")
+            video_ids = [item['id']['videoId'] for item in res.get('items', []) if item.get('id', {}).get('videoId')]
+            
+            if video_ids:
+                v_req = youtube.videos().list(
+                    part="snippet,statistics", id=",".join(video_ids)
+                )
+                v_res = v_req.execute()
+                for item in v_res.get('items', []):
+                    title = item['snippet']['title']
+                    channel = item['snippet']['channelTitle']
+                    view_count = int(item['statistics'].get('viewCount', 0))
+                    like_count = int(item['statistics'].get('likeCount', 0))
+                    pub_date = item['snippet']['publishedAt'][:10]
+                    sniper_data.append(f"[{q}] 업로드: {pub_date} | 채널: {channel} | 조회수: {view_count:,}회 | 좋아요: {like_count:,}개 | 제목: {title}")
         except Exception as e:
             print(f"❌ 검색 오류 ({q}): {e}")
 
@@ -100,16 +110,29 @@ def main():
         sys.exit(1)
 
     data_text = "\n".join(sniper_data)
-    prompt = f"""당신은 유튜브 알고리즘 마스터마인드입니다. 아래는 최근 30일 떡상 영상입니다.
+    prompt = f"""당신은 상위 0.1% 유튜브 알고리즘 마스터마인드이자 천재 기획자입니다.
+아래는 최근 30일 동안 해당 키워드에서 조회수가 폭발한(떡상한) 영상 데이터입니다.
+조회수와 좋아요 수를 기반으로 정밀 분석하세요.
 
-[키워드] {', '.join(chosen)}
-[데이터]
+[타겟 키워드] {', '.join(chosen)}
+[데이터 (조회수순)]
 {data_text}
 
-분석해서 마크다운 보고서를 작성하세요. 반드시 3섹션:
-1. 🌍 트렌드 해킹 분석 — 어떤 패턴이 조회수를 끌고 있는지
-2. 🎯 빈집 털기 전략 — 차별화 가능한 틈새 주제
-3. 🎬 파괴적 영상 기획안 — 썸네일 카피, 제목 3개, 후킹 오프닝(첫 5초)
+위 데이터를 깊이 분석하여, 내가 지금 당장 만들어야 할 '터지는 영상 기획서'를 마크다운 형식으로 작성하세요.
+반드시 아래 3개의 섹션으로 구성해야 합니다:
+
+1. 🌍 트렌드 해킹 분석 (조회수를 끌고 온 진짜 이유)
+   - 사람들이 이 영상들을 클릭한 근본적인 심리와 결핍/욕구 분석
+   - 데이터(조회수)로 증명된 현재 시장의 트렌드 패턴
+
+2. 🎯 경쟁자 빈집 털기 전략
+   - 기존 대박 영상들의 한계점 또는 다루지 않은 약점 파악
+   - 우리가 진입했을 때 차별화할 수 있는 확실한 틈새 주제(포지셔닝)
+
+3. 🎬 파괴적 영상 기획안 (실행 가이드)
+   - 시선을 강탈하는 썸네일 시각화 기획 (이미지 구성, 텍스트 배치, 메인 컬러)
+   - 어그로를 끌면서도 본질을 관통하는 매혹적인 제목 3가지 추천
+   - 시청자 이탈률을 0%로 만드는 후킹 오프닝 대본 (첫 5초 대사)
 """
 
     # v2.89.70 — LM Studio (OpenAI 호환 API) + Ollama 둘 다 지원. URL/포트로 자동 감지.
